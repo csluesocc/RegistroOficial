@@ -1,5 +1,5 @@
 {
-  "name"         : "Sistema de Registro de Usuarios",
+  "name"         : "Sistema-de-Registro-de-Usuarios",
   "version"      : "0.0.1",
   "description"  : "Congreso de estudianes de ingenieria y arquitectura 2014",
   "main"         : "server.js",

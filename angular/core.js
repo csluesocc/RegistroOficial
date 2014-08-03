@@ -59,4 +59,12 @@ function mainController($scope, $http) {
 		$scope.selected = true;
 		console.log($scope.newPersona, $scope.selected);
 	};
+
+	//Agregue funcion para resetear el formulario
+	$scope.deselect = function() {
+		$scope.newPersona = {};
+		$scope.selected = false;
+		
+	}
+
 }

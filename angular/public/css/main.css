@@ -1,0 +1,39 @@
+.dropdown-arrow-inverse {
+  border-bottom-color: #34495e !important;
+  border-top-color: #34495e !important;
+}
+
+.container {
+	width: 99%;
+}
+
+.modal-form {
+	width: 75%;
+}
+.nav-tabs {
+	background-color: #e5e9ea;
+}
+
+  /* LOGO HEADER */
+.ceia-header {
+  padding: 5px 0 15px;
+  text-align: center;
+  background-color: #3e799a;
+}
+
+.ceia-logo {
+  color: #fff;
+  display: block;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0;
+  padding-top: 5px;
+}
+
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
+  .ceia-logo {
+    background-image: url(public/img/logo.png);
+  }
+}
