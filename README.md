@@ -1,23 +1,27 @@
-Sistema De registro
+Sistema de Registro CEI&A
 ============
-Librerias y frameworks:
-1.- NodeJs
-2.-AngularJs
-3.-Express
-4.-MongoDB (gestor de la base de datos)
-5.-Bootstrap (Parte Frontend de la app)
 
+## Librerias y frameworks: ##
+* NodeJs
+* AngularJs
+* Express
+* JQuery
+* MongoDB (Gestor de base de datos)
+* Bootstrap (Parte Frontend de la app)
 
+## Para poder ejecutar este proyecto haz lo siguiente: ##
+* **Instalar [MongoDB](http://docs.mongodb.org/manual/installation/)**
+* **Instalar [Node.js](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)**
 
-Para poder ejecutar este proyecto haz lo siguiente:
-  1.- Instalar MongoDB
-  2.- Instalar express
-  3.- Instalar NodeJS
   
-  luego en un terminal ejecuta los siguiente:
-  ejecuta cada comando estando en la carpeta donde esta el proyecto
-  1.- npm install (Instalara el driver de mongose y modulos de node para el server)
-  2.- node server.js (ejecuta este comando luego de que las depencias de los modulos se terminen de instalar)
-  3.- en el navegador ve a localhost:8080 (puerto en el escuha la api de node puedes asignarle otro modificando el archivo server.js)
+## Luego en una terminal ejecutar los siguiente (en la carpeta del proyecto): ##
+
+```
+$ npm install   #Instalará el driver de mongoose, express y modulos de node para el server
+$ node server.js   #Inica el server (ejecuta este comando luego de que las depencias se terminen de instalar)
+```
+ Despues abre el navegador y ve a ´http://localhost:8080´
+
+ *Puedes cambiar el puerto de escucha de la api de node modificando el archivo ´server.js´ en la linea ´var port = process.env.PORT || 8080;´
 
 
