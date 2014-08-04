@@ -89,23 +89,23 @@
           <!-- Listado -->
           <table class="table">
             <thead>
-              <tr>
+              <tr class="info">
                 <th>Tipo</th>
                 <th>Nombre</th>
                 <th>Ponente</th>
-                <th>Fecha y Hora</th>
-                <th>Turno</th>
+                <th>Lugar</th>
+                <th>Fecha y Hora</th>                
                 <th>Estado</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="evento in eventos" ng-click="selectEvento(evento)">
-                <td>{{ eventos.tipo }}</td>
-                <td>{{ eventos.nombre }}</td>
-                <td>{{ eventos.ponente }}</td>
-                <td>{{ eventos.fecha }}</td>
-                <td>{{ eventos.turno }}</td>                
-                <td>{{ eventos.estado }}</td>
+              <tr ng-repeat="evento in eventos" ng-click="selectEvent(evento)">
+                <td>{{ evento.tipo }}</td>
+                <td>{{ evento.nombreEvento }}</td>
+                <td>{{ evento.ponente }}</td>
+                <td>{{ evento.lugar }}</td>
+                <td>{{ evento.fecha }} - {{ evento.hora }}</td>                
+                <td>{{ evento.estado }}</td>
               </tr>        
             </tbody>
           </table>
@@ -391,8 +391,7 @@
     <!-- JavaScript de angular -->
     <script src="core.js"></script>
     <script src="public/js/jquery-1.8.3.min.js"></script>
-    <script src="public/js/bootstrap.min.js"></script>
-    <script src="public/js/main.js"></script>
+    <script src="public/js/bootstrap.min.js"></script>    
     <!-- Fin JS -->
 
   </body>
