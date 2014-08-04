@@ -64,7 +64,7 @@ function mainController($scope, $http) {
 	};
 
 	//Agregue funcion para resetear el formulario
-	$scope.deselect = function() {
+	$scope.deselectPerson = function() {
 		$scope.newPersona = {};
 		$scope.selected = false;
 		
@@ -126,7 +126,7 @@ function mainController($scope, $http) {
 	};
 
 	//Agregue funcion para resetear el formulario
-	$scope.deselect = function() {
+	$scope.deselectEvento = function() {
 		$scope.newEvento = {};
 		$scope.selected = false;
 		
