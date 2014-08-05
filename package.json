@@ -1,9 +1,9 @@
 {
   "name"         : "Sistema-de-Registro-de-Usuarios",
   "version"      : "0.0.1",
-  "description"  : "Congreso de estudianes de ingenieria y arquitectura 2014",
+  "description"  : "Congreso de Estudiantes de Ingenieria y Arquitectura 2014",
   "main"         : "server.js",
-  "author"       : "Comunidad de Software y hardware Libre Ues-occ",
+  "author"       : "Comunidad de usuarios de Software y Hardware Libre UESOcc",
   "dependencies" : {
     "express"    : "~3.4.4",
     "mongoose"   : "~3.6.2"
