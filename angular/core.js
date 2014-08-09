@@ -2,28 +2,28 @@ angular.module('MainApp', [])
 
 
 function mainController($scope, $http) {
-	$scope.newPersona = {};
-	$scope.personas = {};
+	$scope.newParticipante = {};
+	$scope.participantes = {};
 	$scope.newEvento = {};
 	$scope.eventos = {};
 	$scope.selected = false;
 
 	// --------- PERSONAS --------- //
 	// Obtenemos todos los datos de la base de datos
-	$http.get('/api/persona').success(function(data) {
-		$scope.personas = data;
-	})
-	.error(function(data) {
-		console.log('Error: ' + data);
+	$http.get('/api/participante').success(function(data, status) {
+		console.log(data, status);
+		$scope.participantes = data;
+	}).error(function(data, status) {
+		console.log('Error: ' + data, status);
 	});
 
 
 	// Función para registrar a una persona
-	$scope.registrarPersona = function() {
-		$http.post('/api/persona', $scope.newPersona)
+	$scope.registrarParticipante = function() {
+		$http.post('/api/participante', $scope.newParticipante)
 		.success(function(data) {
-				$scope.newPersona = {}; // Borramos los datos del formulario
-				$scope.personas = data;
+				$scope.newParticipante = {}; // Borramos los datos del formulario
+				$scope.participantes = data;
 			})
 		.error(function(data) {
 			console.log('Error: ' + data);
@@ -31,11 +31,11 @@ function mainController($scope, $http) {
 	};
 
 	// Función para editar los datos de una persona
-	$scope.modificarPersona = function(newPersona) {
-		$http.put('/api/persona/' + $scope.newPersona._id, $scope.newPersona)
+	$scope.modificarParticipante = function(newParticipante) {
+		$http.put('/api/participante/' + $scope.newParticipante._id, $scope.newParticipante)
 		.success(function(data) {
-				$scope.newPersona = {}; // Borramos los datos del formulario
-				$scope.personas = data;
+				$scope.newParticipante = {}; // Borramos los datos del formulario
+				$scope.participantes = data;
 				$scope.selected = false;
 			})
 		.error(function(data) {
@@ -44,11 +44,11 @@ function mainController($scope, $http) {
 	};
 
 	// Función que borra un objeto persona conocido su id
-	$scope.borrarPersona = function(newPersona) {
-		$http.delete('/api/persona/' + $scope.newPersona._id)
+	$scope.borrarParticipante = function(newParticipante) {
+		$http.delete('/api/participante/' + $scope.newParticipante._id)
 		.success(function(data) {
-			$scope.newPersona = {};
-			$scope.personas = data;
+			$scope.newParticipante = {};
+			$scope.participantes = data;
 			$scope.selected = false;
 		})
 		.error(function(data) {
@@ -58,16 +58,16 @@ function mainController($scope, $http) {
 
 	// Función para coger el objeto seleccionado en la tabla
 	$scope.selectPerson = function(persona) {
-		$scope.newPersona = persona;
+		$scope.newParticipante = persona;
 		$scope.selected = true;
-		console.log($scope.newPersona, $scope.selected);
+		console.log($scope.newParticipante, $scope.selected);
 	};
 
 	//Agregue funcion para resetear el formulario
 	$scope.deselectPerson = function() {
-		$scope.newPersona = {};
+		$scope.newParticipante = {};
 		$scope.selected = false;
-		
+
 	}
 
 		// --------- EVENTOS --------- //
@@ -129,9 +129,9 @@ function mainController($scope, $http) {
 	$scope.deselectEvento = function() {
 		$scope.newEvento = {};
 		$scope.selected = false;
-		
+
 	}
 
-	
+
 
 }

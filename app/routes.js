@@ -1,18 +1,18 @@
-var Persona = require('./modelo/persona');
+var Participante = require('./modelo/participante');
 var Evento = require('./modelo/evento');
 var Controller = require ('./controller');
 
 module.exports = function(app) {
 
-	// -------- PERSONAS -------- //
-	// devolver todos las Personas
-	app.get('/api/persona', Controller.getPersona);
-	// Crear una nueva Persona
-	app.post('/api/persona', Controller.setPersona);
-	// Modificar los datos de una Persona
-	app.put('/api/persona/:persona_id', Controller.updatePersona);
-	// Borrar una Persona
-	app.delete('/api/persona/:persona_id', Controller.removePersona);
+	// -------- Participantes -------- //
+	// devolver todos las Participantes
+	app.get('/api/participante', Controller.getParticipante);
+	// Crear una nueva Participante
+	app.post('/api/participante', Controller.setParticipante);
+	// Modificar los datos de una Participante
+	app.put('/api/participante/:id_participante', Controller.updateParticipante);
+	// Borrar una Participante
+	app.delete('/api/participante/:id_participante', Controller.removeParticipante);
 
 	// -------- EVENTOS -------- //
 	// devolver todos los eventos

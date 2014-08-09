@@ -1,67 +1,67 @@
-var Persona = require('./modelo/persona');
+var Participante = require('./modelo/participante');
 var Evento = require('./modelo/evento');
 
-// -------- PERSONAS -------- //
+// -------- Participantes -------- //
 
-// Obtiene todos los objetos Persona de la base de datos
-exports.getPersona = function (req, res){
-	Persona.find(
-		function(err, persona) {
-			if (err)
-				res.send(err)
-					res.json(persona); // devuelve todas las Personas en JSON		
-				}
-			);
+// Obtiene todos los objetos Participante de la base de datos
+exports.getParticipante = function (req, res){
+	Participante.find(
+		function(err, participante) {
+			if (err) res.send(err)
+
+			res.json(participante); // devuelve todas los paticipantes en JSON
+		}
+	);
 }
 
-// Guarda un objeto Persona en base de datos
-exports.setPersona = function(req, res) {
+// Guarda un objeto Participante en base de datos
+exports.setParticipante = function(req, res) {
 
-		// Creo el objeto Persona
-		Persona.create(
-			{carnet : req.body.carnet,apellido: req.body.apellido,nombre:req.body.nombre, carrera: req.body.carrera}, 
-			function(err, persona) {
+		// Creo el objeto Participante
+		Participante.create(
+			{id_participante:req.body.carnet, apellido: req.body.apellido, nombre:req.body.nombre, carrera: req.body.carrera},
+			function(err, participante) {
 				if (err)
 					res.send(err);
 
-				// Obtine y devuelve todas las personas tras crear una de ellas
-				Persona.find(function(err, persona) {
+				// Obtine y devuelve todas las Participantes tras crear una de ellas
+				Participante.find(function(err, participante) {
 				 	if (err)
 				 		res.send(err)
-				 	res.json(persona);
+				 	res.json(participante);
 				});
 			});
 
 	}
 
-// Modificamos un objeto Persona de la base de datos
-exports.updatePersona = function(req, res){
-	Persona.update( {_id : req.params.persona_id},
-					{$set:{carnet: req.body.carnet,	apellido: req.body.apellido, nombre: req.body.nombre, carrera:req.body.carrera}}, 
-					function(err, persona) {
+// Modificamos un objeto Participante de la base de datos
+exports.updateParticipante = function(req, res){
+	Participante.update( {_id : req.params.id_participante},
+					{$set:{carnet: req.body.carnet,	apellido: req.body.apellido, nombre: req.body.nombre, carrera:req.body.carrera}},
+					function(err, participante) {
 						if (err)
 							res.send(err);
 
-				// Obtine y devuelve todas las personas tras crear una de ellas
-				Persona.find(function(err, persona) {
+				// Obtine y devuelve todas las Participantes tras crear una de ellas
+				Participante.find(function(err, participante) {
 				 	if (err)
 				 		res.send(err)
-				 	res.json(persona);
+				 	res.json(participante);
 				});
 			});
 	}
 
-// Elimino un objeto Persona de la base de Datos
-exports.removePersona = function(req, res) {
-	Persona.remove({_id : req.params.persona_id}, function(err, persona) {
+// Elimino un objeto Participante de la base de Datos
+exports.removeParticipante = function(req, res) {
+	Participante.remove({_id : req.params.id_participante}, function(err, participante) {
 		if (err)
 			res.send(err);
 
-			// Obtine y devuelve todas las personas tras borrar una de ellas
-			Persona.find(function(err, persona) {
+			// Obtine y devuelve todas las Participantes tras borrar una de ellas
+			Participante.find(function(err, participante) {
 				if (err)
 					res.send(err)
-				res.json(persona);
+				res.json(participante);
 			});
 		});
 }
@@ -74,7 +74,7 @@ exports.getEvento = function (req, res){
 		function(err, evento) {
 			if (err)
 				res.send(err)
-					res.json(evento); // devuelve todos los las Eventos en JSON		
+					res.json(evento); // devuelve todos los las Eventos en JSON
 				}
 			);
 }
@@ -84,7 +84,7 @@ exports.setEvento = function(req, res) {
 
 		// Creo el objeto Evento
 		Evento.create(
-			{nombreEvento : req.body.nombreEvento,ponente: req.body.ponente,lugar:req.body.lugar, tipo: req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado}, 
+			{nombreEvento : req.body.nombreEvento,ponente: req.body.ponente,lugar:req.body.lugar, tipo: req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado},
 			function(err, evento) {
 				if (err)
 					res.send(err);
@@ -102,7 +102,7 @@ exports.setEvento = function(req, res) {
 // Modificamos un objeto Evento de la base de datos
 exports.updateEvento = function(req, res){
 	Evento.update( {_id : req.params.evento_id},
-					{$set:{nombreEvento: req.body.nombreEvento,	ponente: req.body.ponente, lugar: req.body.lugar, tipo:req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado}}, 
+					{$set:{nombreEvento: req.body.nombreEvento,	ponente: req.body.ponente, lugar: req.body.lugar, tipo:req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado}},
 					function(err, evento) {
 						if (err)
 							res.send(err);

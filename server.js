@@ -5,7 +5,7 @@ var mongoose = require('mongoose');			// mongoose para mongodb
 var port  	 = process.env.PORT || 8080;	// Cogemos el puerto 8080
 
 // Conexion a la DB
-mongoose.connect('mongodb://localhost:27017/aesia_prueba');
+mongoose.connect('mongodb://localhost:27017/aesia_registro');
 
 //Configuracion
 app.configure(function() {
