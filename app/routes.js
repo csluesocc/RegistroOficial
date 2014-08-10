@@ -1,6 +1,6 @@
-var Participante = require('./modelo/participante');
-var Evento = require('./modelo/evento');
-var Controller = require ('./controller');
+var Participante = require('./modelo/participante'),
+	Evento = require('./modelo/evento'),
+	Controller = require ('./controller');
 
 module.exports = function(app) {
 

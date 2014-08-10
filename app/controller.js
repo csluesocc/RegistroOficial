@@ -1,5 +1,5 @@
-var Participante = require('./modelo/participante');
-var Evento = require('./modelo/evento');
+var Participante = require('./modelo/participante'),
+	Evento = require('./modelo/evento');
 
 // -------- Participantes -------- //
 

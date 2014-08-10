@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('evento', {
+module.exports = mongoose.model('eventos', {
 	id_evento: Number, //identificador, numero auto incrementable. Nota: discutir sobre esto: http://docs.mongodb.org/manual/tutorial/create-an-auto-incrementing-field/
     titulo: String,
 	tipo: String, //por ejemplo: ponencia o taller

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('congreso', {
+module.exports = mongoose.model('congresos', {
     id_congreso: String, //identificador unico
     titulo: String,
     slogan: String,

@@ -1,11 +1,13 @@
 // Inicialización
-var express  = require('express');
-var app      = express(); 					// Utilizamos express
-var mongoose = require('mongoose');			// mongoose para mongodb
-var port  	 = process.env.PORT || 8080;	// Cogemos el puerto 8080
+var express  = require('express')
+	app = express(),
+	mongoose = require('mongoose'),
+	port = process.env.PORT || 8080;
 
 // Conexion a la DB
-mongoose.connect('mongodb://localhost:27017/aesia_registro');
+mongoose.set('debug', true);
+mongoose.connect('mongodb://localhost/aesia_registro');
+
 
 //Configuracion
 app.configure(function() {

@@ -8,7 +8,7 @@ function mainController($scope, $http) {
 	$scope.eventos = {};
 	$scope.selected = false;
 
-	// --------- PERSONAS --------- //
+	// --------- PARTICIPANTES --------- //
 	// Obtenemos todos los datos de la base de datos
 	$http.get('/api/participante').success(function(data, status) {
 		console.log(data, status);

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('participante', {
+
+module.exports = mongoose.model('participantes', {
 	id_participante: String, //si es estudiante su carnet, si es docente algo que lo identifique
     nombres: String,
 	apellidos: String,
