@@ -2,6 +2,10 @@
   "name"         : "Sistema-de-Registro-de-Usuarios",
   "version"      : "0.0.1",
   "description"  : "Congreso de Estudiantes de Ingenieria y Arquitectura 2014",
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/csluesocc/RegistroOficial.git"
+  }
   "main"         : "server.js",
   "author"       : "Comunidad de usuarios de Software y Hardware Libre UESOcc",
   "dependencies" : {

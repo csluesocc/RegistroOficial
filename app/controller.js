@@ -7,11 +7,11 @@ var Participante = require('./modelo/participante'),
 exports.getParticipante = function (req, res){
 	Participante.find(
 		function(err, participante) {
-			if (err) res.send(err)
-
-			res.json(participante); // devuelve todas los paticipantes en JSON
-		}
-	);
+			if (err) 
+				res.send(err)
+					res.json(participante); // devuelve todas los paticipantes en JSON
+				}
+			);
 }
 
 // Guarda un objeto Participante en base de datos
@@ -19,7 +19,7 @@ exports.setParticipante = function(req, res) {
 
 		// Creo el objeto Participante
 		Participante.create(
-			{id_participante:req.body.carnet, apellido: req.body.apellido, nombre:req.body.nombre, carrera: req.body.carrera},
+			{id_participante: req.body.id_participante, apellidos: req.body.apellidos, nombres: req.body.nombres, carrera: req.body.carrera, email: req.body.email, telefono: req.body.telefono, tipo_participante: req.body.tipo_participante, institucion: req.body.institucion},
 			function(err, participante) {
 				if (err)
 					res.send(err);
@@ -37,7 +37,7 @@ exports.setParticipante = function(req, res) {
 // Modificamos un objeto Participante de la base de datos
 exports.updateParticipante = function(req, res){
 	Participante.update( {_id : req.params.id_participante},
-					{$set:{carnet: req.body.carnet,	apellido: req.body.apellido, nombre: req.body.nombre, carrera:req.body.carrera}},
+					{$set:{id_participante: req.body.id_participante, apellidos: req.body.apellidos, nombres: req.body.nombres, carrera: req.body.carrera, email: req.body.email, telefono: req.body.telefono, tipo_participante: req.body.tipo_participante, institucion: req.body.institucion}},
 					function(err, participante) {
 						if (err)
 							res.send(err);

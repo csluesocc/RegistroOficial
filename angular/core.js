@@ -57,17 +57,16 @@ function mainController($scope, $http) {
 	};
 
 	// Función para coger el objeto seleccionado en la tabla
-	$scope.selectPerson = function(persona) {
-		$scope.newParticipante = persona;
+	$scope.selectParticipante = function(participante) {
+		$scope.newParticipante = participante;
 		$scope.selected = true;
 		console.log($scope.newParticipante, $scope.selected);
 	};
 
 	//Agregue funcion para resetear el formulario
-	$scope.deselectPerson = function() {
+	$scope.deselectParticipante = function() {
 		$scope.newParticipante = {};
 		$scope.selected = false;
-
 	}
 
 		// --------- EVENTOS --------- //

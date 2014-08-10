@@ -18,5 +18,5 @@ module.exports = mongoose.model('eventos', {
 			institucion: String,
 		}
 	],
-	id_congreso: String //identidicador del congreso
+	id_congreso: String //identificador del congreso
 });
