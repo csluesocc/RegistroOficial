@@ -162,8 +162,12 @@
 
           <!-- Listado -->
           <div class="panel panel-default table-responsive">
+          
+          
+
           <table class="table table-hover">
             <thead>
+              
               <tr class="info font-14">
                 <th>Asistencia</th>
                 <th>Carnet</th>
@@ -178,7 +182,7 @@
               </tr>
             </thead>
             <tbody  class="font-12">
-              <tr ng-repeat="participante in participantes" ng-click="selectParticipante(participante)">
+              <tr ng-repeat="participante in participantes.documents" ng-click="selectParticipante(participante)">
                 <td>
                   <div class="btn-group btn-group-xs" data-toggle="buttons">
                     <label class="btn btn-primary">
@@ -353,10 +357,10 @@
                 <div class="form-group col-lg-6">
                     <label>Tipo de participante:</label>                    
                     <select class="form-control" ng-model="newParticipante.tipo_participante" required >
-                      <option>Estudiante</option>
-                      <option>Docente</option>
-                      <option>Administrativo</option>
-                      <option>Particular</option>
+                      <option>ESTUDIANTE</option>
+                      <option>DOCENTE</option>
+                      <option>ADMINISTRATIVO</option>
+                      <option>PARTICULAR</option>
                     </select>                  
                 </div>
                 </div>

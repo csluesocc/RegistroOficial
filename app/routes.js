@@ -7,7 +7,8 @@ module.exports = function(app) {
 
 	// -------- Participantes -------- //
 	// devolver todos las Participantes
-	app.get('/api/participante', ControllerParticipante.getParticipante);
+	//app.get('/api/participante', ControllerParticipante.getParticipante);
+	app.get('/api/participante', ControllerParticipante.getParticipantePaginado);
 	// Crear una nueva Participante
 	app.post('/api/participante', ControllerParticipante.setParticipante);
 	// Modificar los datos de una Participante
@@ -24,6 +25,9 @@ module.exports = function(app) {
 	app.put('/api/evento/:evento_id', ControllerEvento.updateEvento);
 	// Borrar un evento
 	app.delete('/api/evento/:evento_id', ControllerEvento.removeEvento);
+
+	// -------- PAGINACION -------- //
+	// devolver todos los eventos
 
 	// -------- APLICATION -------- //
 	app.get('*', function(req, res) {

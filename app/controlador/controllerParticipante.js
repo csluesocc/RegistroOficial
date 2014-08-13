@@ -1,16 +1,27 @@
 var Participante = require('../modelo/participante');
 
+var docsPerPage = 15;
 // -------- Participantes -------- //
 
-// Obtiene todos los objetos Participante de la base de datos
+/* Obtiene todos los objetos Participante de la base de datos
 exports.getParticipante = function (req, res){
 	Participante.find(
 		function(err, participante) {
 			if (err) 
 				res.send(err)
-					res.json(participante); // devuelve todas los paticipantes en JSON
-				}
-			);
+			res.json(participante);		
+		}
+	);
+} */
+
+exports.getParticipantePaginado = function (req, res){
+	Participante.findPaginated({}, 
+		function (err, participante) {
+    		if (err) throw err;
+    		//console.log(participante);
+    		res.json(participante);		
+		}, docsPerPage/*, anchorId*/
+	); // pagination options go here
 }
 
 // Guarda un objeto Participante en base de datos
