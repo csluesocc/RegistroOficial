@@ -1,9 +1,11 @@
 var Participante = require('./modelo/participante'),
 	Evento = require('./modelo/evento'),
+	Congreso= require('./modelo/congreso'),
 	ControllerParticipante = require ('./controlador/controllerParticipante'),
-	ControllerEvento = require ('./controlador/controllerEvento');
+	ControllerEvento = require ('./controlador/controllerEvento'),
+        ControllerCongreso= require('./controlador/controllerCongreso');
 
-module.exports = function(app) {
+      module.exports = function(app) {
 
 	// -------- Participantes -------- //
 	// devolver todos las Participantes
@@ -25,6 +27,15 @@ module.exports = function(app) {
 	app.put('/api/evento/:evento_id', ControllerEvento.updateEvento);
 	// Borrar un evento
 	app.delete('/api/evento/:evento_id', ControllerEvento.removeEvento);
+
+// -------- CONGRESO -------- //
+app.get('/api/congreso', ControllerCongreso.getCongreso);
+	// Crear un nuevo congreso
+	app.post('/api/congreso', ControllerCongreso.setCongreso);
+	// Modificar los datos de un patrocinador
+	app.put('/api/congreso/:congreso_id', ControllerCongreso.updateCongreso);
+	// Borrar un patrocinador
+	//app.delete('/api/evento/:evento_id', ControllerC.removeEvento);
 
 	// -------- PAGINACION -------- //
 	// devolver todos los eventos

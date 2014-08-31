@@ -18,7 +18,7 @@ exports.setEvento = function(req, res) {
 
 		// Creo el objeto Evento
 		Evento.create(
-			{nombreEvento : req.body.nombreEvento,ponente: req.body.ponente,lugar:req.body.lugar, tipo: req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado},
+			{id_evento: req.body.id_evento, titulo:req.body.titulo, ponente: req.body.ponente,lugar:req.body.lugar, tipo: req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado, ingenieria: req.body.ingenieria},
 			function(err, evento) {
 				if (err)
 					res.send(err);
@@ -36,7 +36,7 @@ exports.setEvento = function(req, res) {
 // Modificamos un objeto Evento de la base de datos
 exports.updateEvento = function(req, res){
 	Evento.update( {_id : req.params.evento_id},
-					{$set:{nombreEvento: req.body.nombreEvento,	ponente: req.body.ponente, lugar: req.body.lugar, tipo:req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado}},
+					{$set:{titulo:req.body.titulo,ponente: req.body.ponente, lugar: req.body.lugar, tipo:req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado, ingenieria: req.body.ingenieria}},
 					function(err, evento) {
 						if (err)
 							res.send(err);

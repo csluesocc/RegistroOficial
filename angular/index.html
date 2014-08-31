@@ -23,9 +23,10 @@
   <!-- BODY -->
   <body ng-controller="mainController">
     <div class="ceia-header">
-      <h3 class="ceia-logo" align="center">        
-        Congreso de Estudiantes de Ingenier&iacute;a &amp; Arquitectura
-      </h3>
+       <h3 class="ceia-logo" align="center">        
+       Congreso de Estudiantes de Ingenier&iacute;a &amp; Arquitectura 
+      </h3> 
+<img src="public/img/logo.png" width="300" heigth="100"></img>
       <h6>No. de Registros: <span class="label label-success">{{ participantes.length }}</span></h6>
     </div>
       <!-- /Header -->
@@ -34,8 +35,9 @@
       <!-- Pestañas -->
       <ul class="nav nav-tabs nav-justified" role="tablist">
         <li class="active"><a href="#eventos" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span> Eventos</a></li>
-        <li><a href="#personas" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> Personas</a></li>        
-        <li><a href="#asistencia" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tasks"></span> Asistencia</a></li>
+        <li><a href="#personas" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> Personas</a></li> 
+<li><a href="#asistencia" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tasks"></span> Asistencia</a></li>       
+        <li><a href="#congreso" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tasks"></span> Patrocinadores</a></li>
       </ul>
 
       
@@ -71,11 +73,11 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">Something else here</a></li>
+                      <li><a href="#">Publicar</a></li>
+                      <li><a href="#"></a></li>
+                      <li><a href="#"></a></li>
                       <li class="divider"></li>
-                      <li><a href="#">Separated link</a></li>
+                      <li><a href="#"></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -90,9 +92,10 @@
             <thead>
               <tr class="info font-14">
                 <th>Tipo</th>
-                <th>Nombre</th>
+                <th>Titulo</th>
                 <th>Ponente</th>
                 <th>Lugar</th>
+                <th>Publico</th>
                 <th>Fecha y Hora</th>                
                 <th>Estado</th>
               </tr>
@@ -100,9 +103,10 @@
             <tbody class="font-12">
               <tr ng-repeat="evento in eventos" ng-click="selectEvent(evento)">
                 <td>{{ evento.tipo }}</td>
-                <td>{{ evento.nombreEvento }}</td>
+                <td>{{ evento.titulo }}</td>
                 <td>{{ evento.ponente }}</td>
                 <td>{{ evento.lugar }}</td>
+                 <td>{{ evento.ingenieria }}</td>
                 <td>{{ evento.fecha }} - {{ evento.hora }}</td>                
                 <td>
                   <div class="btn-group">
@@ -280,9 +284,87 @@
           </div>
         </div>                      
         <!-- Fin Asistencia -->
-        
-      </div>
+</div>
+
+
+        <div class="tab-pane fade" id="congreso">
+          <!-- MENU -->
+          <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-congreso">
+                  <span class="sr-only"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>                
+              </div>
+
+          <!-- Menu colapsado para moviles -->
+              <div class="collapse navbar-collapse" id="menu-congreso">
+                <ul class="nav navbar-nav">
+       <li><a href="#" data-toggle="modal" data-target="#modal-congreso" ng-click="deselectCongreso()"><span class="fui-plus"></span> Nuevo</a></li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">                    
+                  </div>
+                  <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+                </form>
+                <ul class="nav navbar-nav navbar-right">                  
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#"></a></li>
+                      <li><a href="#"></a></li>
+                      <li><a href="#"></a></li>
+                      <li class="divider"></li>
+                      <li><a href="#"></a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+          <!-- Fin MENU -->
+
+          <!-- Listado -->
+          <div class="panel panel-default table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr class="info font-14">
+                <th>Fecha</th>
+                <th>Patrocinador</th>
+                <th>Tipo</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody class="font-12">
+              <tr ng-repeat="congreso in congresos" ng-click="selectEvent(congreso)">
+                <td>{{ congreso.fecha }}</td>
+                <td>{{ congreso.patrocinador }}</td>
+                <td>{{ congreso.tipo }}</td>
+                <td>{{ congreso.monto }}</td>               
+   <td>
+                  <div class="btn-group">
+        <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-congreso"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                  </div>
+                </td>
+              </tr>        
+            </tbody>
+          </table>
+          </div>
+          <!-- Fin Listado -->          
+        </div>
+</div>
+
+
+
+
+
       <!-- Fin Contenido Pestañas -->
+</div>
 
       <!-- Ventanas Modales -->
       <div class="modal fade" id="modal-evento">
@@ -297,7 +379,7 @@
                 
                 <div class="form-group">                
                   <label>Nombre:</label>
-                  <input type="text" class="form-control" value="" placeholder="Nombre del evento" ng-model="newEvento.nombreEvento" required />
+                  <input type="text" class="form-control" value="" placeholder="Nombre del evento" ng-model="newEvento.titulo" required />
                 </div>
                 
                 <div class="row">
@@ -310,6 +392,20 @@
                     <input type="text" class="form-control" value="" placeholder="Lugar"  ng-model="newEvento.lugar" required />
                   </div>
                 </div>
+                  <div class="form-group col-lg-4">
+                    <label>Publico:</label>                    
+                    <select class="form-control" ng-model="newEvento.ingenieria" required >
+                      <option>Arquitectura</option>
+                      <option>Ing.Civil</option>
+                      <option>Ing.Electrica</option>
+ <option>Ing.Industrial</option>
+ <option>Ing.Mecanica</option>
+ <option>Ing.Sistemas</option>
+                    </select>                  
+                  </div>
+
+
+
                 <div class="row">
                   <div class="form-group col-lg-4">
                     <label>Tipo de evento:</label>                    
@@ -317,6 +413,7 @@
                       <option>Ponencia</option>
                       <option>Taller</option>
                       <option>Especial</option>
+                    <option>Visita Tecnica</option>
                     </select>                  
                   </div>
                   <div class="form-group col-lg-4">
@@ -332,8 +429,9 @@
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-success" ng-click="registrarEvento()" ng-disabled="eventoForm.$invalid || selected"><span class="fui-check-inverted"></span> Registrar</button>
-              <button type="submit" class="btn btn-warning" ng-click="modificarEvento(newEvento)" ng-disabled="!newEvento.nombreEvento || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !selected"><span class="fui-new"></span> Modificar</button>
-              <button type="submit" class="btn btn-danger" ng-click="borrarEvento(newEvento)" ng-disabled="!newEvento.nombreEvento || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !selected"><span class="fui-cross"></span> Borrar</button>
+              
+<button type="submit" class="btn btn-warning" ng-click="modificarEvento(newEvento)" ng-disabled="!newevento.id_evento || !newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria || !selected"><span class="fui-new"></span> Modificar</button>
+              <button type="submit" class="btn btn-danger" ng-click="borrarEvento(newEvento)" ng-disabled="!newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria || !selected"><span class="fui-cross"></span> Borrar</button>
             </div>
           </div>
         </div>
@@ -396,15 +494,71 @@
                 </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>  -->           
+
+            <div class="modal-footer">           
               <button type="submit" class="btn btn-success" ng-click="registrarParticipante()" ng-disabled="personaForm.$invalid || selected"><span class="fui-check-inverted"></span> Registrar</button>
               <button type="submit" class="btn btn-warning" ng-click="modificarParticipante(newParticipante)" ng-disabled="!newParticipante.id_participante || !newParticipante.apellidos || !newParticipante.nombres || !newParticipante.carrera || !newParticipante.tipo_participante || !newParticipante.institucion || !selected"><span class="fui-new"></span> Modificar</button>
               <button type="submit" class="btn btn-danger" ng-click="borrarParticipante(newParticipante)" ng-disabled="!newParticipante.id_participante || !newParticipante.apellidos || !newParticipante.nombres || !newParticipante.carrera || !newParticipante.tipo_participante || !newParticipante.institucion || !selected" ><span class="fui-cross"></span> Borrar</button>                       
             </div>
           </div>
         </div>
-      </div><!-- /.modal PERSONA-->
+      </div>
+    <!-- /.modal PERSONA-->
+
+    <!-- /.modal Patrocinador-->
+
+      <div class="modal fade" id="modal-congreso">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+              <h4 class="modal-title">Datos</h4>
+            </div>
+            <div class="modal-body">            
+              <form name="eventoForm">
+                
+                <div class="form-group">                
+                  <label>fecha:</label>
+                  <input type="date" class="form-control" value="" placeholder="fecha del patrocinio" ng-model="newCongreso.fechaCongreso" required />
+                </div>
+                
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label>Patrocinador:</label>
+                    <input type="text" class="form-control" value="" placeholder="Nombre del Patrocinador"  ng-model="newCongreso.patrocinador" required />
+                  </div>
+                <div class="row">
+                  <div class="form-group col-lg-4">
+                    <label>Categoria:</label>                    
+                    <select class="form-control" ng-model="newCongreso.tipo" required >
+                      <option></option>
+                      <option>Oro</option>
+                      <option>Plata</option>
+                      <option>Bronce</option>
+                    </select>                  
+                  </div>
+                  <div class="form-group col-lg-4">
+                    <label>Monto:</label>
+                    <input type="number" class="form-control" value="Monto en $" ng-model="newCongreso.monto" required />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success" ng-click="registrarCongreso()" ng-disabled="eventoForm.$invalid || selected"><span class="fui-check-inverted"></span> Registrar</button>
+              <button type="submit" class="btn btn-warning" ng-click="modificarCongreso(newCongreso)" ng-disabled="!newCongreso.fechaCongreso || !newCongreso.patrocinador || !newCongreso.tipo || !newCongreso.monto ||!selected"><span class="fui-new"></span> Modificar</button>
+              <button type="submit" class="btn btn-danger" ng-click="borrarCongreso(newCongreso)" ng-disabled="!newCongreso.fechaCongreso || !newCongreso.patrocinador || !newCongreso.tipo || !newCongreso.monto ||!selected"><span class="fui-cross"></span> Borrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
 
       <!-- Fin Modales -->
 
@@ -412,7 +566,7 @@
     <!-- FOOTER -->
     <footer>
       <div class="container">
-        
+        <h4>copyRigth@CSHL2014</h4>
       </div>
     </footer>
     <!-- Fin FOOTER -->
