@@ -29,7 +29,7 @@ var Participante = require('./modelo/participante'),
 	app.delete('/api/evento/:evento_id', ControllerEvento.removeEvento);
 
 // -------- CONGRESO -------- //
-app.get('/api/congreso', ControllerCongreso.getCongreso);
+	app.get('/api/congreso', ControllerCongreso.getCongreso);
 	// Crear un nuevo congreso
 	app.post('/api/congreso', ControllerCongreso.setCongreso);
 	// Modificar los datos de un patrocinador

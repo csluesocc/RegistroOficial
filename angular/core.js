@@ -6,8 +6,8 @@ function mainController($scope, $http) {
 	$scope.participantes = {};
 	$scope.newEvento = {};
 	$scope.eventos = {};
-        $scope.newCongreso= {};
-        $scope.congresos= {};
+	$scope.newCongreso= {};
+    $scope.congresos= {};
 	$scope.selected = false;
 
 	// --------- PARTICIPANTES --------- //
@@ -69,7 +69,7 @@ function mainController($scope, $http) {
 	$scope.deselectParticipante = function() {
 		$scope.newParticipante = {};
 		$scope.selected = false;
-	}
+	};
 
 		// --------- EVENTOS --------- //
 	// Obtenemos todos los datos de la base de datos
@@ -131,15 +131,10 @@ function mainController($scope, $http) {
 		$scope.newEvento = {};
 		$scope.selected = false;
 
-	}
+	};
+ 
 
-
-
-} 
-
-                        //------ Patrocinadores-------------//
-
-
+//------ Patrocinadores-------------//
 
 $http.get('/api/congreso').success(function(data) {
 		$scope.congresos = data;
@@ -174,7 +169,7 @@ $http.get('/api/congreso').success(function(data) {
 	};
  //jajaj elimine la opcion de poder borrar datos en esta parte XD
 	// Función que borra un objeto evento conocido su id
-	*$scope.borrarCongreso = function(newCongreso) {
+	$scope.borrarCongreso = function(newCongreso) {
 		$http.delete('/api/congreso/' + $scope.newCongreso._id)
 		.success(function(data) {
 			$scope.newCongreso = {};
@@ -198,9 +193,9 @@ $http.get('/api/congreso').success(function(data) {
 		$scope.newCongreso = {};
 		$scope.selected = false;
 
-	}
+	};
 
+}
 
-
-} 
+ 
 
