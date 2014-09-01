@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="MainApp">
+  <!-- HEAD -->
+  <head>
+    <meta charset="utf-8">
+    <title>CEI&amp;A - Sistema de Registro</title>
+    <meta name="description" content="Sistema de Registro CEI&amp;A"/>
+
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+    
+    <!-- Bootstrap -->
+    <link href="public/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Flat UI -->
+    <link href="public/css/flat-ui.css" rel="stylesheet">
+    <link href="public/css/main.css" rel="stylesheet">
+    <!-- <link href="public/css/demo.css" rel="stylesheet"> -->
+
+    <link rel="shortcut icon" href="public/img/favicon.png">
+
+  </head>
+  <!-- Fin HEAD -->
+
+  <!-- BODY -->
+  <body ng-controller="mainController">
+    <div class="ceia-header">
+       <h3 class="ceia-logo" align="center">        
+       Congreso de Estudiantes de Ingenier&iacute;a &amp; Arquitectura 
+      </h3> 
+      <div><img src="public/img/logo.png" width="300" heigth="100" /></div>
+      <br>
+      <h4>Calendario de Ponencias, Talleres y Visitas Técnicas</h4>
+<script>//script para mostrar la fecha
+var f = new Date();
+document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+</script>
+
+
+    </div><!--Fin Header-->
+      <div class="container">   
+<ul class="nav nav-tabs nav-justified" role="tablist">
+        <li class="active"><a href="#eventos" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span> Eventos</a></li>
+
+        <br>
+
+          <!-- Listado -->
+          <div class="panel panel-default table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr class="info font-14">
+                <th>Tipo</th>
+                <th>Titulo</th>
+                <th>Ponente</th>
+                <th>Lugar</th>
+                <th>Publico</th>
+                <th>Fecha</th>
+                <th>Hora</th>                
+              </tr>
+            </thead>
+            <tbody class="font-12">
+              <tr ng-repeat="evento in eventos" ng-click="selectEvent(evento)">
+                <td>{{ evento.tipo }}</td>
+                <td>{{ evento.titulo }}</td>
+                <td>{{ evento.ponente }}</td>
+                <td>{{ evento.lugar }}</td>
+                 <td>{{ evento.ingenieria }}</td>
+                <td>{{ evento.fecha }} </td>                
+            <td>{{ evento.hora }} </td>
+                </td>
+              </tr>        
+            </tbody>
+          </table>
+          </div>
+          <!-- Fin Listado -->          
+        </div>
+        <!-- Fin Eventos -->
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+    <footer>
+      <div class="container">
+        <h6>&copy; <script>document.write(new Date().getFullYear());</script> Comunidad de usuarios de Software y Hardware Libre UESOcc</h6>
+      </div>
+    </footer>
+    <!-- Fin FOOTER -->
+    
+    <!-- JS -->
+    <style>
+      input[type=text]{
+        text-transform:uppercase;
+      }
+    </style>
+    <!-- Angular -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <!-- JavaScript de angular -->
+    <script src="./core.js"></script>
+    <script src="public/js/jquery-1.8.3.min.js"></script>
+    <script src="public/js/bootstrap.min.js"></script>    
+    <!-- Fin JS -->
+
+  </body>
+  <!-- Fin BODY -->
+</html>
