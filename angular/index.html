@@ -102,7 +102,7 @@
               </tr>
             </thead>
             <tbody class="font-12">
-              <tr ng-repeat="evento in eventos" ng-click="selectEvent(evento)">
+              <tr ng-repeat="evento in eventos" ng-click="selectEvento(evento)">
                 <td>{{ evento.tipo }}</td>
                 <td>{{ evento.titulo }}</td>
                 <td>{{ evento.ponente }}</td>
@@ -344,7 +344,7 @@
               </tr>
             </thead>
             <tbody class="font-12">
-              <tr ng-repeat="congreso in congresos" ng-click="selectEvent(congreso)">
+              <tr ng-repeat="congreso in congresos" ng-click="selectCongreso(congreso)">
                 <td>{{ congreso.fecha }}</td>
                 <td>{{ congreso.patrocinador }}</td>
                 <td>{{ congreso.tipo }}</td>
@@ -430,7 +430,7 @@
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-success" ng-click="registrarEvento()" ng-disabled="eventoForm.$invalid || selected"><span class="fui-check-inverted"></span> Registrar</button>
-              <button type="submit" class="btn btn-warning" ng-click="modificarEvento(newEvento)" ng-disabled="!newEvento.id_evento || !newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria || !selected"><span class="fui-new"></span> Modificar</button>
+              <button type="submit" class="btn btn-warning" ng-click="modificarEvento(newEvento)" ng-disabled="!newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria || !selected"><span class="fui-new"></span> Modificar</button>
               <button type="submit" class="btn btn-danger" ng-click="borrarEvento(newEvento)" ng-disabled="!newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria || !selected"><span class="fui-cross"></span> Borrar</button>
             </div>
           </div>
@@ -523,7 +523,7 @@
                   </div>
                   <div class="form-group col-lg-6">                
                     <label>Fecha:</label>
-                    <input type="date" class="form-control" value="" placeholder="fecha del patrocinio" ng-model="newCongreso.fechaCongreso" required />
+                    <input type="date" class="form-control" value="" placeholder="fecha del patrocinio" ng-model="newCongreso.fecha" required />
                   </div>
                 </div>
                 <div class="row">
@@ -546,7 +546,7 @@
             <div class="modal-footer">
               <button type="submit" class="btn btn-success" ng-click="registrarCongreso()" ng-disabled="patrocinadorForm.$invalid || selected"><span class="fui-check-inverted"></span> Registrar</button>
               <button type="submit" class="btn btn-warning" ng-click="modificarCongreso(newCongreso)" ng-disabled="!newCongreso.fecha || !newCongreso.patrocinador || !newCongreso.tipo || !newCongreso.monto ||!selected"><span class="fui-new"></span> Modificar</button>
-              <button type="submit" class="btn btn-danger" ng-click="borrarCongreso(newCongreso)" ng-disabled="!newCongreso.fecha || !newCongreso.patrocinador || !newCongreso.tipo || !newCongreso.monto ||!selected"><span class="fui-cross"></span> Borrar</button>
+              
             </div>
           </div>
         </div>

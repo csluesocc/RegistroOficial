@@ -120,7 +120,7 @@ function mainController($scope, $http) {
 	};
 
 	// Función para coger el objeto seleccionado en la tabla
-	$scope.selectEvent = function(evento) {
+	$scope.selectEvento = function(evento) {
 		$scope.newEvento = evento;
 		$scope.selected = true;
 		console.log($scope.newEvento, $scope.selected);
@@ -182,7 +182,7 @@ $http.get('/api/congreso').success(function(data) {
 	};
 
 	// Función para coger el objeto seleccionado en la tabla
-	$scope.selectEvent = function(congreso) {
+	$scope.selectCongreso = function(congreso) {
 		$scope.newCongreso = congreso;
 		$scope.selected = true;
 		console.log($scope.newCongreso, $scope.selected);
