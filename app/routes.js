@@ -1,9 +1,11 @@
 var Participante = require('./modelo/participante'),
 	Evento = require('./modelo/evento'),
 	Congreso= require('./modelo/congreso'),
+      //  Usuario= require('./modelo/usuario'), esto ya no lo use
 	ControllerParticipante = require ('./controlador/controllerParticipante'),
 	ControllerEvento = require ('./controlador/controllerEvento'),
-        ControllerCongreso= require('./controlador/controllerCongreso');
+        ControllerCongreso= require('./controlador/controllerCongreso'),
+        ControllerUsuario= require('./controlador/controllerUsuario');
 
       module.exports = function(app) {
 

@@ -6,8 +6,7 @@ module.exports = mongoose.model('eventos', {
 	tipo: String, //por ejemplo: ponencia o taller
 	//area: String, //por ejemplo: sistemas, civil, etc.
 	fecha: String,
-	hora_ini: String, //si se considera neceario... formato: 00:00 pm/am
-	hora_fin: String, //si se considera neceario... formato: 00:00 pm/am
+	hora: String, //si se considera neceario... formato: 00:00 pm/am
 	lugar: String,
 	ingenieria: String, //opcional
 	ponente:String,

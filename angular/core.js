@@ -7,7 +7,8 @@ function mainController($scope, $http) {
 	$scope.newEvento = {};
 	$scope.eventos = {};
 	$scope.newCongreso= {};
-    $scope.congresos= {};
+        $scope.congresos= {};
+        $scope.usuarios={};
 	$scope.selected = false;
 
 	// --------- PARTICIPANTES --------- //
@@ -120,7 +121,7 @@ function mainController($scope, $http) {
 	};
 
 	// Función para coger el objeto seleccionado en la tabla
-	$scope.selectEvent = function(evento) {
+	$scope.selectEvento = function(evento) {
 		$scope.newEvento = evento;
 		$scope.selected = true;
 		console.log($scope.newEvento, $scope.selected);
@@ -182,7 +183,7 @@ $http.get('/api/congreso').success(function(data) {
 	};
 
 	// Función para coger el objeto seleccionado en la tabla
-	$scope.selectEvent = function(congreso) {
+	$scope.selectCongreso = function(congreso) {
 		$scope.newCongreso = congreso;
 		$scope.selected = true;
 		console.log($scope.newCongreso, $scope.selected);
@@ -194,6 +195,17 @@ $http.get('/api/congreso').success(function(data) {
 		$scope.selected = false;
 
 	};
+//funcion q solo obtiene los datos de la coleccion usuarios
+
+$http.get('/api/usuario').success(function(data, status) {
+		console.log(data, status);
+		$scope.usuario = data;
+	}).error(function(data, status) {
+		console.log('Error: ' + data, status);
+	});
+
+
+
 
 }
 
