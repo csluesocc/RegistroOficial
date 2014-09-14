@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-    <head>
+<html lang="es" ng-app="MainApp">
+      <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         
@@ -7,94 +8,131 @@
     <link type="image/x-icon" href="firefox.ico" rel="icon"/>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-
-<html lang="es" ng-app="MainApp">
-
-  <!-- Fin HEAD -->
-
-
-
+  
         <link rel="stylesheet" href="public/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="public/bootstrap/css/main.css">
+        <link rel="stylesheet" href="public/css/main.css">
+        <link rel="stylesheet" href="public/css/flat-ui.css">
         <style>
-body{
-
-background-color:#34495E;
-
-}
-
-
+            body{
+                background-color:#34495E;
+            }
         </style>
         
     </head>
     <body>
-       <header>
-</header>
+       
    <!--Barra de Navegacion-->
-        <nav class="navbar navbar-default nav">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Cambiar Navegacion</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="#" class="navbar-brand">Sistema de Registro</a>
-            </div>
-
-            <div class="collapse navbar-collapse navbar-ex1-collapse"  aling="right">
-                <ul class="nav navbar-nav">
-
-                    <li><a href="login.html">Iniciar sesión</a></li>
-                    <li><a href="contenido.html">Ponencias y mas</a></li>
-                    <li><a href="#">Acerda de</a></li>
-            
-            </nav>
-    
-                    <div class="container">
+   <nav class="navbar navbar-default nav">
+       <div class="navbar-header">
+       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Cambiar Navegacion</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="#" class="navbar-brand">Sistema de Registro</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse"  aling="right">
+          <ul class="nav navbar-nav">
+              <li><a href="contenido.html">Ponencias y mas</a></li>
+              <li><a href="#">Acerda de</a></li>
+          </ul>
+    </nav>
+    <div class="container">
             <!--Slider-->
+            <div class="row">
+            <div class="col-lg-8">
             <section id="miSlide" class="carousel slide">
                 <ol class="carousel-indicators">
                     <li data-target="#miSlide" data-slide-to="0" class="active"></li>
                     <li data-target="#miSlide" data-slide-to="1"></li>
                     <li data-target="#miSlide" data-slide-to="2"></li>
                 </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="public/img/congre.jpg" class="adaptar">
+              </div>
+              <div class="item">
+                <img src="public/img/pone.jpg" class="adaptar">
+              </div>
+              <div class="item">
+                <img src="public/img/como.jpg" class="adaptar">
+            </div>
+            </div>
+            </section>
+            </div>
+    
+    <div class="col-lg-4" style="color: #fff;">
+      <form name="registroForm" method='post' action="login" align="center">
+          <h4>Inicio de Sesión</h4>
+          <div class="row">        
+            <div class="form-group col-lg-2"> </div>
+        <div class="form-group col-lg-8"> 
+          <label>Ingresa tu Carnet:</label>                    
+          <input type="text" class="form-control" name='username' placeholder="Carnet" required />
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-lg-2"> </div>
+        <div class="form-group col-lg-8">               
+          <label>Ingresa tu Contrase&ntilde;a:</label>
+          <input type="password" class="form-control" name='password' placeholder="Contraseña" required />
+        </div>
+        </div>
+      <div class="row">
+        <div class="form-group col-lg-2"> </div>
+        <div class="form-group col-lg-8"> 
+            <button class="btn btn-info" data-toggle="modal" data-target="#modal-registro" align="left"><span class="glyphicon glyphicon-user"></span> Registrate</button>
+            <button type="submit" class="btn btn-success" value='login' align="rigth"><span class="fui-check-inverted"></span> Login</button>
+        </div>
+        </div>
+      </form>
+      </div>  
+    </div> 
+  </div>
 
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="public/img/congre.jpg" class="adaptar">
-                    </div>
-                    <div class="item">
-                        <img src="public/img/pone.jpg" class="adaptar">
-                    </div>
-                    <div class="item">
-                        <img src="public/img/como.jpg" class="adaptar">
-                    </div>
-</div>
-     <br>
+  <!-- Modal para el registro de usuarios -->
+      <div class="modal fade" id="modal-registro">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+              <h4 class="modal-title">Registro de Usuarios</h4>
+            </div>
+            <div class="modal-body">            
+              <form name="registroForm" method='post' action="registrar">
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label>Carnet:</label>                    
+                    <input type="text" class="form-control" name='username' placeholder="Carnet" required />
+                  </div>
+                  <div class="form-group col-lg-6">                
+                    <label>Contrase&ntilde;a:</label>
+                    <input type="password" class="form-control" name='password' placeholder="contraseña" required />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success" value="Registrar" ><span class="fui-check-inverted"></span> Registrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-   
-        <h3>2014-Comunidad de usuarios de Software y Hardware Libre UESOcc</h3>
 
+      <!-- Fin Modales -->
+    </br></br></br>
+    <footer>
+      <div class="container">
+        <h6>&copy; <script>document.write(new Date().getFullYear());</script> Comunidad de usuarios de Software y Hardware Libre UESOcc</h6>
       </div>
     </footer>
-    <!-- Fin FOOTER -->
     
-    <!-- JS -->
-    <style>
-      h3{
-color: white;
-font-size:18px;
-}
-
-    </style>
-        </footer>
-
-<script>window.jQuery || document.write('<script src="public/bootstrap/js/jquery-1.10.1.min.js"><\/script>')</script>
-             <script src="public/bootstrap/js/bootstrap.js"></script>
-
-
-        <script src="public/bootstrap/js/main.js"></script>
-
+    <script>window.jQuery || document.write('<script src="public/bootstrap/js/jquery-1.10.1.min.js"><\/script>')</script>
+    <script src="public/bootstrap/js/bootstrap.js"></script>
+    <script src="public/bootstrap/js/main.js"></script>
+</body>
+</html>
 
         

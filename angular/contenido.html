@@ -13,8 +13,6 @@
     <!-- Flat UI -->
     <link href="public/css/flat-ui.css" rel="stylesheet">
     <link href="public/css/main.css" rel="stylesheet">
-    <!-- <link href="public/css/demo.css" rel="stylesheet"> -->
-
     <link rel="shortcut icon" href="public/img/favicon.png">
 
   </head>
@@ -27,21 +25,20 @@
        Congreso de Estudiantes de Ingenier&iacute;a &amp; Arquitectura 
       </h3> 
       <div><img src="public/img/logo.png" width="300" heigth="100" /></div>
-      <br>
-      <h4>Calendario de Ponencias, Talleres y Visitas Técnicas</h4>
-<script>//script para mostrar la fecha
-var f = new Date();
-document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
-</script>
+      <h5>Calendario de Ponencias y Talleres</br>
+      <script>//script para mostrar la fecha
+        var f = new Date();
+        document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+      </script>
+    </h5>
 
 
     </div><!--Fin Header-->
       <div class="container">   
-<ul class="nav nav-tabs nav-justified" role="tablist">
+      <ul class="nav nav-tabs nav-justified" role="tablist">
         <li class="active"><a href="#eventos" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span> Eventos</a></li>
 
         <br>
-
           <!-- Listado -->
           <div class="panel panel-default table-responsive">
           <table class="table table-hover">
@@ -64,7 +61,7 @@ document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
                 <td>{{ evento.lugar }}</td>
                  <td>{{ evento.ingenieria }}</td>
                 <td>{{ evento.fecha }} </td>                
-            <td>{{ evento.hora }} </td>
+                <td>{{ evento.hora }} </td>
                 </td>
               </tr>        
             </tbody>
@@ -73,44 +70,15 @@ document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
           <!-- Fin Listado -->          
         </div>
         <!-- Fin Eventos -->
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br>
+    </div>
+      <br>
     <footer>
       <div class="container">
         <h6>&copy; <script>document.write(new Date().getFullYear());</script> Comunidad de usuarios de Software y Hardware Libre UESOcc</h6>
       </div>
     </footer>
     <!-- Fin FOOTER -->
-    
-    <!-- JS -->
-    <style>
-      input[type=text]{
-        text-transform:uppercase;
-      }
-    </style>
+
     <!-- Angular -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <!-- JavaScript de angular -->

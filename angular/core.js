@@ -182,12 +182,12 @@ $http.get('/api/congreso').success(function(data) {
 		});
 	};
 
-	// Función para coger el objeto seleccionado en la tabla
+	//Seleccionar Congreso
 	$scope.selectCongreso = function(congreso) {
 		$scope.newCongreso = congreso;
 		$scope.selected = true;
 		console.log($scope.newCongreso, $scope.selected);
-	};
+	};	
 
 	//Agregue funcion para resetear el formulario
 	$scope.deselectCongreso = function() {
