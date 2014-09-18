@@ -14,6 +14,14 @@ var usuario_schema = new Schema({
 //declaramos el objecto User para poder utilizarlo en las rutas
 var User = db.model('User', usuario_schema)
 
+//Sesiones
+var express = require('express');
+var app = express();
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(express.cookieParser({secreto:'secret'}));//necesario para utilizar sesiones
+app.use(express.session({cookie: {maxAge: 900000}}));//tiempo de expiración de la sesión
+
 //operacion de login
 
 
@@ -52,27 +60,48 @@ function encriptar(user, pass) {
 
 
 app.post('/login', function(req, res) {
+req.session.nuevaSesion = req.body.username // creo una variable de sesion 
    var username = req.body.username
-   var password = req.body.password
-
+   var password = req.body.password 
    var passEncriptada = encriptar(username,password)
 
    User.findOne({username:username},function (err, user){
       if(user) {
-    
     //comprabamos si la contraseña encriptada es igual a la contraseña encriptada anteriormente
         
         if(user.password === passEncriptada)
-            res.redirect('control.html')
+ // verificaa que el pass exita 
+  
+            res.redirect('control.html');
 
-         else  
-res.send('contraseña incorrecta')
-      }
+      else  
+        res.send('contraseña incorrecta')
+      
        
-    else 
+      } else 
 res.send('Ese usuario no existe')
 
+})     
+});  
+// verificamos q la session exista con el siguiente codigo
+ app.get('/login', function(req, res)
+    {
+        //si no existe la sesion del usuario redirigimos al index
+        if(!req.session.nuevasesion)
+        { 
+            res.redirect("index.html");
+        }
+        //en otro caso mostramos la vista
+        else 
+        {
+            res.redirect('control.html');
+        }
+    });
 
-     
-})
-})
+//ruta que elimina las sesiones y redirige
+    app.get("/removeSesion", function(req, res){
+        //eliminamos las sesiones y redirigimos
+        req.session.destroy();
+        res.redirect("index.html");
+    })
+ 
