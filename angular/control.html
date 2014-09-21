@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="MainApp">
+<html lang="es" ng-app="mainApp">
   <!-- HEAD -->
   <head>
     <meta charset="utf-8">
@@ -7,12 +7,13 @@
     <meta name="description" content="Sistema de Registro CEI&amp;A"/>
 
     <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
-    
+
     <!-- Bootstrap -->
     <link href="public/bootstrap/css/bootstrap.css" rel="stylesheet">
     <!-- Flat UI -->
     <link href="public/css/flat-ui.css" rel="stylesheet">
     <link href="public/css/main.css" rel="stylesheet">
+    <link href="public/css/loading-bar.css" rel="stylesheet">
     <!-- <link href="public/css/demo.css" rel="stylesheet"> -->
 
     <link rel="shortcut icon" href="public/img/favicon.png">
@@ -21,30 +22,30 @@
   <!-- Fin HEAD -->
 
   <!-- BODY -->
-  <body ng-controller="mainController">
+  <body>
     <div class="ceia-header">
-       <h3 class="ceia-logo" align="center">        
-       Congreso de Estudiantes de Ingenier&iacute;a &amp; Arquitectura 
-      </h3> 
+       <h3 class="ceia-logo" align="center">
+       Congreso de Estudiantes de Ingenier&iacute;a &amp; Arquitectura
+      </h3>
       <div><img src="public/img/logo.png" width="300" heigth="100" /></div>
       <div><a class="label label-danger" href="/removeSesion"><span class="fui-cross"></span> Cerrar Sesión</a></div>
     </div>
       <!-- /Header -->
-    <div class="container">      
+    <div class="container">
 
       <!-- Pestañas -->
       <ul class="nav nav-tabs nav-justified" role="tablist">
         <li class="active"><a href="#eventos" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span> Eventos</a></li>
-        <li><a href="#personas" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> Personas</a></li> 
-        <li><a href="#asistencia" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tasks"></span> Asistencia</a></li>       
+        <li><a href="#personas" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> Personas</a></li>
+        <li><a href="#asistencia" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tasks"></span> Asistencia</a></li>
         <li><a href="#congreso" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-star-empty"></span> Patrocinadores</a></li>
       </ul>
 
-      
+
 
       <!-- Contenido Pestañas -->
       <div class="tab-content">
-        <div class="tab-pane fade in active" id="eventos">
+        <div class="tab-pane fade in active" id="eventos" ng-contrller="eventosApp">
           <!-- MENU -->
           <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
@@ -55,7 +56,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
-                </button>                
+                </button>
               </div>
 
           <!-- Menu colapsado para moviles -->
@@ -65,11 +66,11 @@
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">                    
+                    <input type="text" class="form-control" placeholder="Search">
                   </div>
                   <!-- <button type="submit" class="btn btn-default">Submit</button> -->
                 </form>
-                <ul class="nav navbar-nav navbar-right">                  
+                <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -93,8 +94,8 @@
                 <th>Ponente</th>
                 <th>Lugar</th>
                 <th>Publico</th>
-                <th>Fecha </th> 
-                <th>Hora</th>               
+                <th>Fecha </th>
+                <th>Hora</th>
                 <th>Estado</th>
               </tr>
             </thead>
@@ -105,23 +106,23 @@
                 <td>{{ evento.ponente }}</td>
                 <td>{{ evento.lugar }}</td>
                  <td>{{ evento.ingenieria }}</td>
-                <td>{{ evento.fecha }}</td>                
+                <td>{{ evento.fecha }}</td>
                 <td>{{ evento.hora }}</td>
                 <td>
                   <div class="btn-group">
                       <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-evento"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
                   </div>
                 </td>
-              </tr>        
+              </tr>
             </tbody>
           </table>
           </div>
-          <!-- Fin Listado -->          
+          <!-- Fin Listado -->
         </div>
         <!-- Fin Eventos -->
 
         <!-- Personas -->
-        <div class="tab-pane fade" id="personas">
+        <div class="tab-pane fade" id="personas" ng-controller="participantesCtrl">
           <!-- MENU -->
           <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
@@ -132,7 +133,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
-                </button>                
+                </button>
               </div>
 
           <!-- Menu colapsado para moviles -->
@@ -142,11 +143,11 @@
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">                    
+                    <input type="text" class="form-control" placeholder="Search" ng-model="participanteLike" ng-change="buscarParticipante()">
                   </div>
                   <!-- <button type="submit" class="btn btn-default">Submit</button> -->
                 </form>
-                <ul class="nav navbar-nav navbar-right">                  
+                <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -162,12 +163,12 @@
 
           <!-- Listado -->
           <div class="panel panel-default table-responsive">
-          
-          
+
+
 
           <table class="table table-hover">
             <thead>
-              
+
               <tr class="info font-14">
                 <th>Asistencia</th>
                 <th>Carnet</th>
@@ -182,7 +183,7 @@
               </tr>
             </thead>
             <tbody  class="font-12">
-              <tr ng-repeat="participante in participantes.documents" ng-click="selectParticipante(participante)">
+              <tr ng-repeat="participante in participantes" ng-click="selectParticipante(participante)">
                 <td>
                   <div class="btn-group btn-group-xs" data-toggle="buttons">
                     <label class="btn btn-primary">
@@ -193,43 +194,60 @@
                 <td>{{ participante.id_participante }}</td>
                 <td>{{ participante.apellidos }}</td>
                 <td>{{ participante.nombres }}</td>
-                <td>{{ participante.carrera }}</td>          
-                <td>{{ participante.email }}</td>  
-                <td>{{ participante.telefono }}</td>  
+                <td>{{ participante.carrera }}</td>
+                <td>{{ participante.email }}</td>
+                <td>{{ participante.telefono }}</td>
 		            <td>{{ participante.tipo_participante }}</td>
-                <td>{{ participante.institucion }}</td>  
+                <td>{{ participante.institucion }}</td>
                 <td>
                   <div class="btn-group btn-group-xs">
                       <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-persona"><span class="glyphicon glyphicon-pencil small"></span> Editar</button>
                   </div>
                 </td>
-              </tr>        
+              </tr>
             </tbody>
           </table>
           </div>
           <!-- Fin Listado -->
+		  <div>
+              <!-- paginado de datos -->
+              <div id="paginado">
+                  <ul class="pager">
+                      <li ng-class="{previous:true, disabled:(currentPage==1)}"><a href ng-click="prevPage()">&larr; Atras</a></li>
+                      <li ng-class="{next:true, disabled:(currentPage==numPages)}"><a href ng-click="nextPage()">Siguiente &rarr;</a></li>
+                   </ul>
 
+		          <!-- Paginado con numeros
+
+                  <ul class="pagination pagination-sm">
+					  <li><a href="#" ng-click="prevPage()">&laquo;</a></li>
+					  <li ng-repeat="i in []|range:numPages" ng-class="{active:((i+1)==currentPage)}" ng-click="goToPage(i+1)"><a href="#">{{i+1}}</a></li>
+					  <li><a href="#" ng-click="nextPage()">&raquo;</a></li>
+					</ul>
+                -->
+            </div><!-- fin paginado -->
+		  </div>
         </div>
         <!-- Fin Personas -->
-        
+
         <!-- Asistencia -->
         <div class="tab-pane fade" id="asistencia">
           <!-- MENU -->
           <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
-          
+
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-asistencia">
                   <span class="sr-only">Asistencia</span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
-                </button>                
+                </button>
               </div>
 
-          
-              <div class="collapse navbar-collapse" id="menu-asistencia">                
-                <ul class="nav navbar-nav navbar-right">                  
+
+              <div class="collapse navbar-collapse" id="menu-asistencia">
+                <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -240,9 +258,9 @@
                 </ul>
               </div>
             </div>
-          </nav>          
+          </nav>
           <!-- Fin MENU -->
-          
+
           <div>
           <div class="panel-group" id="accordion">
             <div class="panel panel-default" ng-repeat="asistencia in reportes">
@@ -257,30 +275,30 @@
                 <div class="panel-body">
                   <div class="table-responsive">
                   <table class="table table-hover">
-                    <thead> 
-                      <tr class="info">                      
+                    <thead>
+                      <tr class="info">
                         <th>Carreras</th>
-                        <th>No. Asistencias</th>                                                                        
+                        <th>No. Asistencias</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="persona in personas" ng-click="selectPerson(persona)">                      
+                      <tr ng-repeat="persona in personas" ng-click="selectPerson(persona)">
                         <td>{{ asistencia.carreras }}</td>
                         <td>{{ asistencia.asistentes.lenght }}</td>
-                      </tr>        
+                      </tr>
                     </tbody>
-                  </table>      
+                  </table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>                      
+        </div>
         <!-- Fin Asistencia -->
 </div>
 
 
-        <div class="tab-pane fade" id="congreso">
+        <div class="tab-pane fade" id="congreso" ng-controller="congresoCtrl">
           <!-- MENU -->
           <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
@@ -291,7 +309,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
-                </button>                
+                </button>
               </div>
 
           <!-- Menu colapsado para moviles -->
@@ -301,11 +319,11 @@
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">                    
+                    <input type="text" class="form-control" placeholder="Search">
                   </div>
                   <!-- <button type="submit" class="btn btn-default">Submit</button> -->
                 </form>
-                <ul class="nav navbar-nav navbar-right">                  
+                <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -336,17 +354,17 @@
                 <td>{{ congreso.fecha }}</td>
                 <td>{{ congreso.patrocinador }}</td>
                 <td>{{ congreso.tipo }}</td>
-                <td>{{ congreso.monto }}</td>               
+                <td>{{ congreso.monto }}</td>
                 <td>
                   <div class="btn-group">
                     <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-congreso"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
                   </div>
                 </td>
-              </tr>        
+              </tr>
             </tbody>
           </table>
           </div>
-          <!-- Fin Listado -->          
+          <!-- Fin Listado -->
         </div>
       </div>
 
@@ -361,14 +379,14 @@
               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
               <h4 class="modal-title">Datos</h4>
             </div>
-            <div class="modal-body">            
+            <div class="modal-body">
               <form name="eventoForm">
-                
-                <div class="form-group">                
+
+                <div class="form-group">
                   <label>Nombre:</label>
                   <input type="text" class="form-control" value="" placeholder="Nombre del evento" ng-model="newEvento.titulo" required />
                 </div>
-                
+
                 <div class="row">
                   <div class="form-group col-lg-6">
                     <label>Ponente:</label>
@@ -381,7 +399,7 @@
                 </div>
                 <div class="row">
                   <div class="form-group col-lg-6">
-                    <label>Publico:</label>                    
+                    <label>Publico:</label>
                     <select class="form-control" ng-model="newEvento.ingenieria" required >
                       <option>GENERAL</option>
                       <option>ARQUITECTURA</option>
@@ -391,17 +409,17 @@
                       <option>MECANICA</option>
                       <option>SISTEMAS</option>
                       <option>QUIMICA</option>
-                    </select>                  
+                    </select>
                   </div>
 
                   <div class="form-group col-lg-6">
-                    <label>Tipo de evento:</label>                    
+                    <label>Tipo de evento:</label>
                     <select class="form-control" ng-model="newEvento.tipo" required >
                       <option>PONENCIA</option>
                       <option>TALLER</option>
                       <option>ESPECIAL</option>
                       <option>VISITA TECNICA</option>
-                    </select>                  
+                    </select>
                   </div>
                 </div>
                 <div class="row">
@@ -433,21 +451,21 @@
               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
               <h4 class="modal-title">Datos Personales</h4>
             </div>
-            <div class="modal-body">            
+            <div class="modal-body">
               <form name="personaForm">
                 <div class="row">
-                <div class="form-group col-lg-6">                
+                <div class="form-group col-lg-6">
                   <label>Carnet:</label>
                   <input type="text" class="form-control" value="" placeholder="Carnet" ng-model="newParticipante.id_participante" required />
                 </div>
                 <div class="form-group col-lg-6">
-                    <label>Tipo de participante:</label>                    
+                    <label>Tipo de participante:</label>
                     <select class="form-control" ng-model="newParticipante.tipo_participante" required >
                       <option>ESTUDIANTE</option>
                       <option>DOCENTE</option>
                       <option>ADMINISTRATIVO</option>
                       <option>PARTICULAR</option>
-                    </select>                  
+                    </select>
                 </div>
                 </div>
                 <div class="row">
@@ -459,7 +477,7 @@
                     <label>Apellidos:</label>
                     <input type="text" class="form-control" value="" placeholder="Apellidos" ng-model="newParticipante.apellidos" required />
                   </div>
-                </div>                
+                </div>
                 <div class="row">
                   <div class="form-group col-lg-6">
                     <label>Email:</label>
@@ -483,10 +501,10 @@
               </form>
             </div>
 
-            <div class="modal-footer">           
+            <div class="modal-footer">
               <button type="submit" class="btn btn-success" ng-click="registrarParticipante()" ng-disabled="personaForm.$invalid || selected"><span class="fui-check-inverted"></span> Registrar</button>
               <button type="submit" class="btn btn-warning" ng-click="modificarParticipante(newParticipante)" ng-disabled="!newParticipante.id_participante || !newParticipante.apellidos || !newParticipante.nombres || !newParticipante.carrera || !newParticipante.tipo_participante || !newParticipante.institucion || !selected"><span class="fui-new"></span> Modificar</button>
-              <button type="submit" class="btn btn-danger" ng-click="borrarParticipante(newParticipante)" ng-disabled="!newParticipante.id_participante || !newParticipante.apellidos || !newParticipante.nombres || !newParticipante.carrera || !newParticipante.tipo_participante || !newParticipante.institucion || !selected" ><span class="fui-cross"></span> Borrar</button>                       
+              <button type="submit" class="btn btn-danger" ng-click="borrarParticipante(newParticipante)" ng-disabled="!newParticipante.id_participante || !newParticipante.apellidos || !newParticipante.nombres || !newParticipante.carrera || !newParticipante.tipo_participante || !newParticipante.institucion || !selected" ><span class="fui-cross"></span> Borrar</button>
             </div>
           </div>
         </div>
@@ -502,31 +520,31 @@
               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
               <h4 class="modal-title">Datos</h4>
             </div>
-            <div class="modal-body">            
+            <div class="modal-body">
               <form name="patrocinadorForm">
                 <div class="row">
                   <div class="form-group col-lg-6">
-                    <label>Patrocinador:</label>                    
+                    <label>Patrocinador:</label>
                     <input type="text" class="form-control" value="" placeholder="Nombre del Patrocinador"  ng-model="newCongreso.patrocinador" required />
                   </div>
-                  <div class="form-group col-lg-6">                
+                  <div class="form-group col-lg-6">
                     <label>Fecha:</label>
                     <input type="date" class="form-control" value="" placeholder="fecha del patrocinio" ng-model="newCongreso.fecha" required />
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-lg-6">
-                    <label>Monto ($):</label>                    
+                    <label>Monto ($):</label>
                     <input type="number" class="form-control" placeholder="Monto en $" ng-model="newCongreso.monto" required />
                   </div>
                   <div class="form-group col-lg-6">
-                    <label>Categoria:</label>                    
+                    <label>Categoria:</label>
                     <select class="form-control" ng-model="newCongreso.tipo" required >
                       <option></option>
                       <option>ORO</option>
                       <option>PLATA</option>
                       <option>BRONCE</option>
-                    </select>                  
+                    </select>
                   </div>
                 </div>
               </form>
@@ -548,14 +566,21 @@
       </div>
     </footer>
     <!-- Fin FOOTER -->
-    
+
     <!-- JS -->
     <!-- Angular -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <!-- JavaScript de angular -->
-    <script src="./core.js"></script>
+    <script src="./modules/animate.js"></script>
+    <script src="./services/loading-bar.js"></script>
+    <script src="./services/mainService.js"></script>
+    <script src="./controllers/eventosCtrl.js"></script>
+    <script src="./controllers/congresoCtrl.js"></script>
+    <script src="./controllers/participantesCtrl.js"></script>
+    <script src="./controllers/patrocinadoresCtrl.js"></script>
+    <script src="./main.js"></script>
     <script src="public/js/jquery-1.8.3.min.js"></script>
-    <script src="public/js/bootstrap.min.js"></script>    
+    <script src="public/js/bootstrap.min.js"></script>
     <!-- Fin JS -->
 
   </body>
