@@ -17,10 +17,10 @@ var User = db.model('User', usuario_schema)
 //Sesiones
 var express = require('express');
 var app = express();
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.cookieParser({secreto:'secret'}));//necesario para utilizar sesiones
-app.use(express.session({cookie: {maxAge: 900000}}));//tiempo de expiración de la sesión
+//app.use(express.bodyParser());
+//app.use(express.methodOverride());
+//app.use(express.cookieParser({secreto:'secret'}));//necesario para utilizar sesiones
+//app.use(express.session({cookie: {maxAge: 900000}}));//tiempo de expiración de la sesión
 
 //operacion de login
 
@@ -60,7 +60,7 @@ function encriptar(user, pass) {
 
 
 app.post('/login', function(req, res) {
-req.session.nuevaSesion = req.body.username // creo una variable de sesion 
+//req.session.nuevaSesion = req.body.username // creo una variable de sesion 
    var username = req.body.username
    var password = req.body.password 
    var passEncriptada = encriptar(username,password)
@@ -71,21 +71,9 @@ req.session.nuevaSesion = req.body.username // creo una variable de sesion
         
         if(user.password === passEncriptada)
  // verificaa que el pass exita 
-  
-            res.redirect('control.html');
 
-      else  
-        res.send('contraseña incorrecta')
-      
-       
-      } else 
-res.send('Ese usuario no existe')
-
-})     
-});  
-// verificamos q la session exista con el siguiente codigo
- app.get('/login', function(req, res)
-    {
+       {
+        req.session.nuevaSesion = req.body.username // creo una variable de sesion 
         //si no existe la sesion del usuario redirigimos al index
         if(!req.session.nuevasesion)
         { 
@@ -96,12 +84,23 @@ res.send('Ese usuario no existe')
         {
             res.redirect('control.html');
         }
-    });
+
+      
+     } else  
+        res.send('contraseña incorrecta')
+      
+       
+      } else 
+res.send('Ese usuario no existe')
+
+})     
+});  
 
 //ruta que elimina las sesiones y redirige
-    app.get("/removeSesion", function(req, res){
+    app.post("/removeSesion", function(req, res){
         //eliminamos las sesiones y redirigimos
-        req.session.destroy();
         res.redirect("index.html");
+        req.session.destroy();
+        
     })
  

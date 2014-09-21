@@ -38,9 +38,17 @@ var Participante = require('./modelo/participante'),
 	app.put('/api/congreso/:congreso_id', ControllerCongreso.updateCongreso);
 	// Borrar un patrocinador
 	//app.delete('/api/evento/:evento_id', ControllerC.removeEvento);
+	//--user--//
+
+
+	
 
 	// -------- PAGINACION -------- //
 	// devolver todos los eventos
+// login post y get
+
+//{
+ 
 
 	// -------- APLICATION -------- //
 	app.get('*', function(req, res) {

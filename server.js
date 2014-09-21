@@ -14,8 +14,16 @@ app.configure(function() {
 	app.use(express.static(__dirname + '/angular'));
 	app.use(express.logger('dev'));			// activamos el log en modo 'dev'
 	app.use(express.bodyParser());			// Cambia HTML con metodo post
-	app.use(express.methodOverride()); 		//Simula delete y put
+	app.use(express.methodOverride());		//Simula delete y put
+	app.use(express.cookieParser({secreto:'sesiones'}));//necesario para utilizar sesiones
+    app.use(express.session({cookie: {maxAge: 900000}}));
+    app.use(app.router);
 });
+
+
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
 
 // Cargamos los endpoints
 require('./app/routes.js')(app);
