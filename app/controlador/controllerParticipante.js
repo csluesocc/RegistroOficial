@@ -7,21 +7,52 @@ var docsPerPage = 15;
 exports.getParticipante = function (req, res){
 	Participante.find(
 		function(err, participante) {
-			if (err) 
+			if (err)
 				res.send(err)
-			res.json(participante);		
+			res.json(participante);
 		}
 	);
 } */
 
-exports.getParticipantePaginado = function (req, res){
-	Participante.findPaginated({}, 
-		function (err, participante) {
-    		if (err) throw err;
-    		//console.log(participante);
-    		res.json(participante);		
-		}, docsPerPage/*, anchorId*/
-	); // pagination options go here
+//Nota: uso este mismo metodo para buscar y paginar para no escribir mas codigo
+exports.getParticipantes = function (req, res){
+	var limit = 10, //numero de elementos por pagina
+		pageNum = (req.body.page!=undefined)?req.body.page-1:0, //numero de pagina a mostrar
+		like = (req.body.like!=undefined)?req.body.like:false, //parametro de busqueda
+		query = {}; //query
+
+	if(like){
+		//criterios de busqueda
+		query = {
+			"$or":[
+					{'nombres':new RegExp(like.toUpperCase())},
+					{'apellidos':new RegExp(like.toUpperCase())},
+					{'id_participante':new RegExp('^'+like.toUpperCase())},
+					{"email":new RegExp('^'+like.toUpperCase())},
+					{"carrera":new RegExp('^'+like.toUpperCase())}
+				]
+		}
+	}
+
+	Participante
+		.find(query)
+		.limit(limit) //maximo numero a devolver
+		.skip(limit*pageNum) //saltar las paginas
+		.exec(function(err, participante){
+			if(err) throw err;
+
+			if(pageNum==0 || like){
+				Participante.count(query, function(err, count){
+					if(err) throw err;
+
+					res.json({participantes:participante, count:count, limit:limit});
+				});
+			}else{
+				res.json({participantes:participante});
+			}
+
+
+		});
 }
 
 // Guarda un objeto Participante en base de datos
