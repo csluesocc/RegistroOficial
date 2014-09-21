@@ -1,0 +1,9 @@
+angular.module('mainApp', 
+		[			
+			'chieffancypants.loadingBar',
+			'ngAnimate',
+			'eventosApp',
+			'participantesApp',
+			'congresoApp'
+		]
+);
