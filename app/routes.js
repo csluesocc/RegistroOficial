@@ -12,7 +12,7 @@ var Participante = require('./modelo/participante'),
 	// -------- Participantes -------- //
 	// devolver todos las Participantes
 	//app.get('/api/participante', ControllerParticipante.getParticipante);
-	app.get('/api/participante', ControllerParticipante.getParticipantePaginado);
+	app.post('/api/participantes', ControllerParticipante.getParticipantes);
 	// Crear una nueva Participante
 	app.post('/api/participante', ControllerParticipante.setParticipante);
 	// Modificar los datos de una Participante
@@ -41,14 +41,14 @@ var Participante = require('./modelo/participante'),
 	//--user--//
 
 
-	
+
 
 	// -------- PAGINACION -------- //
 	// devolver todos los eventos
 // login post y get
 
 //{
- 
+
 
 	// -------- APLICATION -------- //
 	app.get('*', function(req, res) {
