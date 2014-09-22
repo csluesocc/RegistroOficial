@@ -30,7 +30,7 @@ angular.module('participantesApp', ['mainServiceApp',])
 
 	// Función para registrar a una persona
 	$scope.registrarParticipante = function() {
-		$http.post('/api/participante', scope.newParticipante)
+		$http.post('/api/participante', $scope.newParticipante)
 		.success(function(data) {
 				$scope.newParticipante = {}; // Borramos los datos del formulario
 				$scope.participantes = data;
@@ -42,7 +42,7 @@ angular.module('participantesApp', ['mainServiceApp',])
 
 	// Función para editar los datos de una persona
 	$scope.modificarParticipante = function(newParticipante) {
-		$http.put('/api/participante/' + scope.newParticipante._id, scope.newParticipante)
+		$http.put('/api/participante/' + $scope.newParticipante._id, $scope.newParticipante)
 		.success(function(data) {
 				$scope.newParticipante = {}; // Borramos los datos del formulario
 				$scope.participantes = data;
@@ -55,7 +55,7 @@ angular.module('participantesApp', ['mainServiceApp',])
 
 	// Función que borra un objeto persona conocido su id
 	$scope.borrarParticipante = function(newParticipante) {
-		$http.delete('/api/participante/' + scope.newParticipante._id)
+		$http.delete('/api/participante/' + $scope.newParticipante._id)
 		.success(function(data) {
 			$scope.newParticipante = {};
 			$scope.participantes = data;
