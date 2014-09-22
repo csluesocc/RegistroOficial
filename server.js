@@ -19,7 +19,7 @@ app.configure(function() {
 	app.use(express.cookieParser("12345679")); //revisar esto porque la linea anterior me daba error
     app.use(express.session({cookie: {maxAge: 900000}}));
 	app.use(express.session());
-    app.use(app.router);
+    //app.use(app.router);
 });
 
 

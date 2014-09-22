@@ -14,21 +14,27 @@
     <link href="public/css/flat-ui.css" rel="stylesheet">
     <link href="public/css/main.css" rel="stylesheet">
     <link href="public/css/loading-bar.css" rel="stylesheet">
-    <!-- <link href="public/css/demo.css" rel="stylesheet"> -->
+    <!-- <link href="public/css/demo.css" rel="stylesheet"> pase el script al footer para que cargar la vista antes sea prioridad -->
 
     <link rel="shortcut icon" href="public/img/favicon.png">
-
+<!--<script type="text/javascript" src="asis.js"></script>-->
   </head>
   <!-- Fin HEAD -->
 
   <!-- BODY -->
   <body>
+
+
     <div class="ceia-header">
        <h3 class="ceia-logo" align="center">
        Congreso de Estudiantes de Ingenier&iacute;a &amp; Arquitectura
       </h3>
       <div><img src="public/img/logo.png" width="300" heigth="100" /></div>
       <div><a class="label label-danger" href="/removeSesion"><span class="fui-cross"></span> Cerrar Sesión</a></div>
+<br>
+<div align="left" id="contador">
+
+</div>
     </div>
       <!-- /Header -->
     <div class="container">
@@ -97,6 +103,8 @@
                 <th>Fecha </th>
                 <th>Hora</th>
                 <th>Estado</th>
+             <th>N° de Asistentes</th>
+                <th></th>
               </tr>
             </thead>
             <tbody class="font-12">
@@ -108,7 +116,9 @@
                  <td>{{ evento.ingenieria }}</td>
                 <td>{{ evento.fecha }}</td>
                 <td>{{ evento.hora }}</td>
+                 <td>{{ evento.asistencia }}</td>
                 <td>
+<td>
                   <div class="btn-group">
                       <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-evento"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
                   </div>
@@ -179,7 +189,8 @@
                 <th>Telefono</th>
  		            <th>Tipo</th>
                 <th>Institucion</th>
-                <th></th>
+                <th>Folder</th>
+<th></th>
               </tr>
             </thead>
             <tbody  class="font-12">
@@ -187,7 +198,9 @@
                 <td>
                   <div class="btn-group btn-group-xs" data-toggle="buttons">
                     <label class="btn btn-primary">
-                      <input type="radio" name="asistencia-persona" id="asistencia-personas" checked><span class="fui-check small"></span>
+
+                 <div class="btn-group btn-group-xs">
+ <button type="submit" value="Asistencia" id="boton" onclick="javascript: contador()" ><span class="fui-check small"></span>Asistencia</button></div>
                     </label>
                   </div>
                 </td>
@@ -199,10 +212,12 @@
                 <td>{{ participante.telefono }}</td>
 		            <td>{{ participante.tipo_participante }}</td>
                 <td>{{ participante.institucion }}</td>
+                <td>{{ participante.folder }}</td>
                 <td>
                   <div class="btn-group btn-group-xs">
                       <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-persona"><span class="glyphicon glyphicon-pencil small"></span> Editar</button>
                   </div>
+                
                 </td>
               </tr>
             </tbody>
@@ -372,19 +387,19 @@
     </div>
 
       <!-- Ventanas Modales -->
-      <div class="modal fade" id="modal-evento">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
+      <div class="modal fade" id="modal-evento" ng-controller="eventosCtrl">
+        <div class="modal-dialog" ng-controller="controllerEvento">
+          <div class="modal-content" ng-controller="controllerEvento">
+            <div class="modal-header" ng-controller="controllerEvento">
               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
               <h4 class="modal-title">Datos</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" ng-controller="controllerEvento">
               <form name="eventoForm">
 
                 <div class="form-group">
                   <label>Nombre:</label>
-                  <input type="text" class="form-control" value="" placeholder="Nombre del evento" ng-model="newEvento.titulo" required />
+                  <input type="text" class="form-control" value="" placeholder="Nombre del evento" ng-model="newEvento.titulo" required  ng-controller="controllerEvento"/>
                 </div>
 
                 <div class="row">
@@ -392,10 +407,7 @@
                     <label>Ponente:</label>
                     <input type="text" class="form-control" value="" placeholder="Nombre del ponente"  ng-model="newEvento.ponente" required />
                   </div>
-                  <div class="form-group col-lg-6">
-                    <label>Lugar:</label>
-                    <input type="text" class="form-control" value="" placeholder="Lugar"  ng-model="newEvento.lugar" required />
-                  </div>
+                 
                 </div>
                 <div class="row">
                   <div class="form-group col-lg-6">
@@ -431,13 +443,17 @@
                     <label>Hora:</label>
                     <input type="time" class="form-control" value="" ng-model="newEvento.hora" required />
                   </div>
+ <div class="form-group col-lg-6">
+                    <label>N° de Asistentes:</label>
+                    <input type="num" class="form-control" value="" placeholder="Numero de asistencia"  ng-model="newEvento.asistencia" required />
+                  </div>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-success" ng-click="registrarEvento()" ng-disabled="eventoForm.$invalid || selected"><span class="fui-check-inverted"></span> Registrar</button>
-              <button type="submit" class="btn btn-warning" ng-click="modificarEvento(newEvento)" ng-disabled="!newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria || !selected"><span class="fui-new"></span> Modificar</button>
-              <button type="submit" class="btn btn-danger" ng-click="borrarEvento(newEvento)" ng-disabled="!newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria || !selected"><span class="fui-cross"></span> Borrar</button>
+              <button type="submit" class="btn btn-warning" ng-click="modificarEvento(newEvento)" ng-disabled="!newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria || !newEvento.asistencia || !selected"><span class="fui-new"></span> Modificar</button>
+              <button type="submit" class="btn btn-danger" ng-click="borrarEvento(newEvento)" ng-disabled="!newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria ||  !newEvento.asistencia || !selected"><span class="fui-cross"></span> Borrar</button>
             </div>
           </div>
         </div>
@@ -497,9 +513,19 @@
                     <label>Institución:</label>
                     <input type="text" class="form-control" value="" placeholder="Institucion" ng-model="newParticipante.institucion" required />
                   </div>
+ <div class="form-group col-lg-6">
+                    <label>Folder:</label>
+                    <select class="form-control" ng-model="newParticipante.folder" required >
+                      <option>Entregado</option>
+                      <option>Pendiente</option>
+                      
+                    </select>
+                </div>
+                </div>
                 </div>
               </form>
             </div>
+</div>
 
             <div class="modal-footer">
               <button type="submit" class="btn btn-success" ng-click="registrarParticipante()" ng-disabled="personaForm.$invalid || selected"><span class="fui-check-inverted"></span> Registrar</button>
@@ -509,6 +535,8 @@
           </div>
         </div>
       </div>
+
+
     <!-- /.modal PERSONA-->
 
     <!-- /.modal Patrocinador-->
@@ -544,6 +572,7 @@
                       <option>ORO</option>
                       <option>PLATA</option>
                       <option>BRONCE</option>
+                         <option>Ruby</option>
                     </select>
                   </div>
                 </div>
@@ -569,8 +598,10 @@
 
     <!-- JS -->
     <!-- Angular -->
+<script type="text/javascript" src="asis.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <!-- JavaScript de angular -->
+    <script src="asistencia.js"></script>
     <script src="./modules/animate.js"></script>
     <script src="./services/loading-bar.js"></script>
     <script src="./services/mainService.js"></script>
@@ -581,6 +612,7 @@
     <script src="./main.js"></script>
     <script src="public/js/jquery-1.8.3.min.js"></script>
     <script src="public/js/bootstrap.min.js"></script>
+  
     <!-- Fin JS -->
 
   </body>

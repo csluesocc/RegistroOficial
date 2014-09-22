@@ -60,7 +60,7 @@ exports.setParticipante = function(req, res) {
 
 		// Creo el objeto Participante
 		Participante.create(
-			{id_participante: req.body.id_participante, apellidos: req.body.apellidos, nombres: req.body.nombres, carrera: req.body.carrera, email: req.body.email, telefono: req.body.telefono, tipo_participante: req.body.tipo_participante, institucion: req.body.institucion},
+			{id_participante: req.body.id_participante, apellidos: req.body.apellidos, nombres: req.body.nombres, carrera: req.body.carrera, email: req.body.email, telefono: req.body.telefono, tipo_participante: req.body.tipo_participante, institucion: req.body.institucion, folder: req.bdy.folder},
 			function(err, participante) {
 				if (err)
 					res.send(err);
@@ -78,7 +78,7 @@ exports.setParticipante = function(req, res) {
 // Modificamos un objeto Participante de la base de datos
 exports.updateParticipante = function(req, res){
 	Participante.update( {_id : req.params.id_participante},
-					{$set:{id_participante: req.body.id_participante, apellidos: req.body.apellidos, nombres: req.body.nombres, carrera: req.body.carrera, email: req.body.email, telefono: req.body.telefono, tipo_participante: req.body.tipo_participante, institucion: req.body.institucion}},
+					{$set:{id_participante: req.body.id_participante, apellidos: req.body.apellidos, nombres: req.body.nombres, carrera: req.body.carrera, email: req.body.email, telefono: req.body.telefono, tipo_participante: req.body.tipo_participante, institucion: req.body.institucion, folder: req.bdy.folder}},
 					function(err, participante) {
 						if (err)
 							res.send(err);

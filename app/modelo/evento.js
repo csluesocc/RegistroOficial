@@ -10,5 +10,6 @@ module.exports = mongoose.model('eventos', {
 	lugar: String,
 	ingenieria: String, //opcional
 	ponente:String,
-	id_congreso: String //identificador del congreso
+	id_congreso: String, //identificador del congreso
+        asistencia:String // numero de participantes
 });

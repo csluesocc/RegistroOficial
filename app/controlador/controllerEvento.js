@@ -18,7 +18,7 @@ exports.setEvento = function(req, res) {
 
 		// Creo el objeto Evento
 		Evento.create(
-			{id_evento: req.body.id_evento, titulo:req.body.titulo, ponente: req.body.ponente,lugar:req.body.lugar, tipo: req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado, ingenieria: req.body.ingenieria},
+			{id_evento: req.body.id_evento, titulo:req.body.titulo, ponente: req.body.ponente,lugar:req.body.lugar, tipo: req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado, ingenieria: req.body.ingenieria, asistencia:req.body.asistencia},
 			function(err, evento) {
 				if (err)
 					res.send(err);
@@ -36,7 +36,7 @@ exports.setEvento = function(req, res) {
 // Modificamos un objeto Evento de la base de datos
 exports.updateEvento = function(req, res){
 	Evento.update( {_id : req.params.evento_id},
-					{$set:{titulo:req.body.titulo,ponente: req.body.ponente, lugar: req.body.lugar, tipo:req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado, ingenieria: req.body.ingenieria}},
+					{$set:{titulo:req.body.titulo,ponente: req.body.ponente, lugar: req.body.lugar, tipo:req.body.tipo, fecha:req.body.fecha, hora:req.body.hora, estado:req.body.estado, ingenieria: req.body.ingenieria,asistencia:req.body.asistencia}},
 					function(err, evento) {
 						if (err)
 							res.send(err);
