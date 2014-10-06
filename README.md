@@ -40,6 +40,6 @@ Ahora podemos ejecutar nuestra aplicación usando nodemon
 
 Luego abre el navegador y ve a `http://localhost:8080`
 
-Ya no tendras que preocuparte por hacer `Ctr + c` para reiniciar la aplicación cada vez que cambies algo en el código, ahora nodemon tomara control de tu aplicación y se reiniciará cada vez que edites algún archivo del código fuente. 
+Ya no tendras que preocuparte por hacer `Ctrl + c` para reiniciar la aplicación cada vez que cambies algo en el código, ahora nodemon tomara control de tu aplicación y se reiniciará cada vez que edites algún archivo del código fuente. 
 
 
