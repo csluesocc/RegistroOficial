@@ -20,6 +20,10 @@ var Participante = require('./modelo/participante'),
 	// Borrar una Participante
 	app.delete('/api/participante/:id_participante', ControllerParticipante.removeParticipante);
 
+	// --------- ASISTENCIA ------ //
+	app.post('/api/asistencia', ControllerParticipante.tomarAsistencia);
+
+
 	// -------- EVENTOS -------- //
 	// devolver todos los eventos
 	app.get('/api/evento', ControllerEvento.getEvento);
@@ -39,7 +43,6 @@ var Participante = require('./modelo/participante'),
 	// Borrar un patrocinador
 	//app.delete('/api/evento/:evento_id', ControllerC.removeEvento);
 	//--user--//
-
 
 
 

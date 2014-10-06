@@ -1,0 +1,65 @@
+<!-- Asistencia -->
+<div class="tab-pane fade" id="asistencia">
+    <!-- MENU -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-asistencia">
+                  <span class="sr-only">Asistencia</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="menu-asistencia">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="contenido.html">Publicar</a></li>
+                          <li><a href="#">Cerrar Sesión</a></li>
+                        </ul>
+                      </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+  <!-- Fin MENU -->
+
+    <div>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default" ng-repeat="asistencia in reportes">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        {{ asistencia.nombreEvento }}
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="info">
+                                        <th>Carreras</th>
+                                        <th>No. Asistencias</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="persona in personas" ng-click="selectPerson(persona)">
+                                        <td>{{ asistencia.carreras }}</td>
+                                        <td>{{ asistencia.asistentes.lenght }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Fin Asistencia -->
+</div>

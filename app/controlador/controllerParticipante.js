@@ -1,4 +1,5 @@
-var Participante = require('../modelo/participante');
+var Participante = require('../modelo/participante'),
+	Asistencia = require('../modelo/asistencia');
 
 var docsPerPage = 15;
 // -------- Participantes -------- //
@@ -105,4 +106,21 @@ exports.removeParticipante = function(req, res) {
 				res.json(participante);
 			});
 		});
+}
+
+exports.tomarAsistencia = function(req, res){
+	var id_participante = req.body.id_participante,
+		id_evento = req.body.id_evento,
+		id_congreso = req.body.id_congreso;
+
+	Asistencia.update(
+		{'id_participante':id_participante, 'id_congreso':id_congreso},
+		{'$addToSet':{'eventos':id_evento}},
+		{'upsert':true},
+		function(err, count){
+			if(err) throw err;
+			console.dir("Modificados", count);
+			res.json({'msj':'Asistencia tomada a '+id_participante});
+		}
+	);
 }

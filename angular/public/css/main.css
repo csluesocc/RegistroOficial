@@ -48,3 +48,9 @@ div#paginado{
     background-image: url(public/img/logo.png);
   }
 }
+
+/** animate **/
+div[ng-view].ng-enter {
+    -webkit-animation: fadeInRight 0.5s;
+    animation: fadeInRight 0.5s;
+}

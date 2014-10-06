@@ -1,6 +1,8 @@
 angular.module('eventosApp', ['mainServiceApp'])
 
-.controller('eventosCtrl', ['$scope', '$http', 'mainService', function($scope, $http, mainService){
+.controller('eventosCtrl', ['$scope', '$http', 'mainService', '$location',
+function($scope, $http, mainService, $location){
+	mainService.evento = undefined;
 	$scope.newEvento = {};
 	$scope.eventos = {};
 	$scope.selected = false;
@@ -12,9 +14,10 @@ angular.module('eventosApp', ['mainServiceApp'])
 		console.log('Error: ' + data);
 	});
 
-
 	// Función para registrar a una evento
 	$scope.registrarEvento = function() {
+		/*alert("registro");
+		console.log($scope.newEvento);*/
 		$http.post('/api/evento', $scope.newEvento)
 		.success(function(data) {
 				$scope.newEvento = {}; // Borramos los datos del formulario
@@ -52,10 +55,13 @@ angular.module('eventosApp', ['mainServiceApp'])
 	};
 
 	// Función para coger el objeto seleccionado en la tabla
-	$scope.selectEvento = function(evento) {
+	$scope.selectEvento = function(evento, accion) {
+		if(accion == 'asistencia'){
+			alert("Tomar asistencia al evento "+evento.titulo);
+		}
 		$scope.newEvento = evento;
 		$scope.selected = true;
-		console.log($scope.newEvento, $scope.selected);
+		mainService.evento = {id:evento.id_evento, id_congreso:evento.id_congreso};
 	};
 
 	//Agregue funcion para resetear el formulario
@@ -64,4 +70,9 @@ angular.module('eventosApp', ['mainServiceApp'])
 		$scope.selected = false;
 
 	};
+
+	$scope.irAsistencia = function(id){
+		$location.path('#/participantes');
+	};
+
 }]);

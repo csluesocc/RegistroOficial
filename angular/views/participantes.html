@@ -1,0 +1,188 @@
+<!-- Personas -->
+<div class="tab-pane fade" id="participantes" ng-controller="participantesCtrl">
+  <!-- MENU -->
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+  <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-personas">
+          <span class="sr-only">Personas</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+  <!-- Menu colapsado para moviles -->
+      <div class="collapse navbar-collapse" id="menu-personas">
+        <ul class="nav navbar-nav">
+          <li><a href="#" data-toggle="modal" data-target="#modal-persona" ng-click="deselectParticipante()"><span class="fui-user"></span> Nuevo</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" ng-model="participanteLike" ng-change="buscarParticipante()">
+          </div>
+          <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="contenido.html">Publicar</a></li>
+              <li><a href="#">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <!-- Fin MENU -->
+
+  <!-- Listado -->
+  <div class="panel panel-default table-responsive">
+
+
+
+  <table class="table table-hover">
+    <thead>
+
+      <tr class="info font-14">
+        <th ng-show="id_evento">Asistencia</th>
+        <th>Carnet</th>
+        <th>Apellidos</th>
+        <th>Nombres</th>
+        <th>Carrera</th>
+        <th>Email</th>
+        <th>Telefono</th>
+        <th>Tipo</th>
+        <th>Institucion</th>
+        <th>Folder</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody  class="font-12">
+      <tr ng-repeat="participante in participantes">
+        <td ng-show="id_evento">
+          <button ng-click="tomarAsistencia(participante)" class="btn btn-success btn-sm">
+              <span class="glyphicon glyphicon-ok"></span>
+          </button>
+        </td>
+        <td>{{ participante.id_participante }}</td>
+        <td>{{ participante.apellidos }}</td>
+        <td>{{ participante.nombres }}</td>
+        <td>{{ participante.carrera }}</td>
+        <td>{{ participante.email }}</td>
+        <td>{{ participante.telefono }}</td>
+            <td>{{ participante.tipo_participante }}</td>
+        <td>{{ participante.institucion }}</td>
+        <td>{{ participante.folder }}</td>
+        <td>
+          <div class="btn-group btn-group-xs">
+              <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal-persona" ng-click="selectParticipante(participante)"><span class="glyphicon glyphicon-pencil small"></span> Editar</button>
+          </div>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <!-- Fin Listado -->
+  <div>
+      <!-- paginado de datos -->
+      <div id="paginado">
+          <ul class="pager">
+              <li ng-class="{previous:true, disabled:(currentPage==1)}"><a href ng-click="prevPage()">&larr; Atras</a></li>
+              <li ng-class="{next:true, disabled:(currentPage==numPages)}"><a href ng-click="nextPage()">Siguiente &rarr;</a></li>
+           </ul>
+
+          <!-- Paginado con numeros
+
+          <ul class="pagination pagination-sm">
+              <li><a href="#" ng-click="prevPage()">&laquo;</a></li>
+              <li ng-repeat="i in []|range:numPages" ng-class="{active:((i+1)==currentPage)}" ng-click="goToPage(i+1)"><a href="#">{{i+1}}</a></li>
+              <li><a href="#" ng-click="nextPage()">&raquo;</a></li>
+            </ul>
+        -->
+    </div><!-- fin paginado -->
+  </div>
+</div>
+<!-- Fin Personas -->
+
+<div class="modal fade" id="modal-persona" ng-controller="participantesCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+        <h4 class="modal-title">Datos Personales</h4>
+      </div>
+      <div class="modal-body">
+        <form name="personaForm">
+          <div class="row">
+          <div class="form-group col-lg-6">
+            <label>Carnet:</label>
+            <input type="text" class="form-control" value="" placeholder="Carnet" ng-model="newParticipante.id_participante" required />
+          </div>
+          <div class="form-group col-lg-6">
+              <label>Tipo de participante:</label>
+              <select class="form-control" ng-model="newParticipante.tipo_participante" required >
+                <option>ESTUDIANTE</option>
+                <option>DOCENTE</option>
+                <option>ADMINISTRATIVO</option>
+                <option>PARTICULAR</option>
+              </select>
+          </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label>Nombres:</label>
+              <input type="text" class="form-control" value="" placeholder="Nombres" ng-model="newParticipante.nombres" required />
+            </div>
+            <div class="form-group col-lg-6">
+              <label>Apellidos:</label>
+              <input type="text" class="form-control" value="" placeholder="Apellidos" ng-model="newParticipante.apellidos" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label>Email:</label>
+              <input type="text" style="text-transform:lowercase;" class="form-control" value="" placeholder="example@email.com" ng-model="newParticipante.email" required />
+            </div>
+            <div class="form-group col-lg-6">
+              <label>Telefono:</label>
+              <input type="text" class="form-control" value="" placeholder="7777-7777" ng-model="newParticipante.telefono" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label>Carrera:</label>
+              <input type="text" class="form-control" value="" placeholder="Carrera" ng-model="newParticipante.carrera" required />
+            </div>
+            <div class="form-group col-lg-6">
+              <label>Institución:</label>
+              <input type="text" class="form-control" value="" placeholder="Institucion" ng-model="newParticipante.institucion" required />
+            </div>
+<div class="form-group col-lg-6">
+              <label>Folder:</label>
+              <select class="form-control" ng-model="newParticipante.folder" required >
+                <option>Entregado</option>
+                <option>Pendiente</option>
+
+              </select>
+          </div>
+          </div>
+          </div>
+        </form>
+      </div>
+</div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" ng-click="registrarParticipante()" ng-disabled="personaForm.$invalid || selected"><span class="fui-check-inverted"></span> Registrar</button>
+        <button type="submit" class="btn btn-warning" ng-click="modificarParticipante(newParticipante)" ng-disabled="!newParticipante.id_participante || !newParticipante.apellidos || !newParticipante.nombres || !newParticipante.carrera || !newParticipante.tipo_participante || !newParticipante.institucion || !selected"><span class="fui-new"></span> Modificar</button>
+        <button type="submit" class="btn btn-danger" ng-click="borrarParticipante(newParticipante)" ng-disabled="!newParticipante.id_participante || !newParticipante.apellidos || !newParticipante.nombres || !newParticipante.carrera || !newParticipante.tipo_participante || !newParticipante.institucion || !selected" ><span class="fui-cross"></span> Borrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- /.modal PERSONA-->

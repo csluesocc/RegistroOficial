@@ -1,6 +1,14 @@
 angular.module('participantesApp', ['mainServiceApp',])
 
-.controller('participantesCtrl', ['$scope', '$http', 'mainService', function($scope, $http, mainService){
+.controller('participantesCtrl', ['$scope', '$http', 'mainService', '$routeParams',
+function($scope, $http, mainService, $routeParams){
+	//console.log($routeParams.evento_id);
+	if(mainService.evento != undefined){
+		$scope.id_evento = mainService.evento.id;
+		$scope.id_congreso = mainService.evento.id_congreso;
+		console.log(mainService.evento);
+	}
+
 	$scope.newParticipante = {};
 	$scope.participantes = {};
 	$scope.selected = false;
@@ -79,6 +87,26 @@ angular.module('participantesApp', ['mainServiceApp',])
 		$scope.selected = false;
 	};
 
+	/****************************************/
+	/********** Tomar asistencia ************/
+	$scope.tomarAsistencia = function(participante){
+		var params = {
+			id_participante:participante.id,
+			id_evento:$scope.id_evento,
+			id_congreso:$scope.id_congreso
+		};
+		mainService.post('/api/asistencia', params, function(data, estatus){
+			if(data.msj != undefined){
+				console.log(data.msj);
+				//quitamos al participante de la lista una vez que se le haya tomado asistencia
+				var index = $scope.participantes.indexOf(participante);
+				if (index > -1) {
+					$scope.participantes.splice(index, 1);
+				}
+			}
+			//console.log("asistencia tomada a "+id);
+		});
+	};
 	/******************************************************/
 	/*************** Buscar participante ***************/
 	$scope.buscarParticipante = function(){

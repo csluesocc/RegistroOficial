@@ -2,14 +2,7 @@ angular.module('mainServiceApp', [])
 
 .factory('mainService', ['$http', function($http){
 	var service = {
-		newParticipante: {},
-		participantes:{},
-		newEvento: {},
-		eventos: {},
-		newCongreso: {},
-		congresos:{},
-		usuarios:{},
-		selected:false,
+		evento: undefined,
 
 		post:function(url, params, callback){
 			$http.post(url, params)
