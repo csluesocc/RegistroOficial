@@ -5,7 +5,8 @@ angular.module('mainApp',
 			'ngRoute',
 			'eventosApp',
 			'participantesApp',
-			'congresoApp'
+			'congresoApp',
+			'mainServiceApp'
 		]
 )
 .run(['$route', function($route)  {
@@ -28,4 +29,28 @@ angular.module('mainApp',
       	otherwise({
         	redirectTo: '/eventos'
       	});
+}])
+.controller('tabsCtrl', ['$scope', '$location', 'mainService', function($scope, $location, mainService){
+	$scope.$watch(function(){	
+		return $location.path();
+	}, function(n, o){
+		$scope.tabsFalse();
+		switch(n){
+			case '/eventos':
+				$scope.tabEvento = true;
+				break;
+			case '/participantes':
+				$scope.tabParticipante = true;
+				break;
+			default:
+				$scope.tabEvento = true;
+		}
+	}, true);
+
+	$scope.tabsFalse = function(){
+		$scope.tabEvento = false;
+		$scope.tabParticipante = false;
+		$scope.tabAsistencia = false;
+		$scope.tabCongreso = false;
+	};
 }]);

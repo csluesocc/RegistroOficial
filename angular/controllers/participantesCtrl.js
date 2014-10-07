@@ -6,7 +6,7 @@ function($scope, $http, mainService, $routeParams){
 	if(mainService.evento != undefined){
 		$scope.id_evento = mainService.evento.id;
 		$scope.id_congreso = mainService.evento.id_congreso;
-		console.log(mainService.evento);
+		//console.log(mainService.evento);
 	}
 
 	$scope.newParticipante = {};

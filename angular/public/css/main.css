@@ -38,6 +38,10 @@
   padding-top: 5px;
 }
 
+/** custom **/
+.nav-tabs li.active{
+    background-color:#fff !important;
+}
 div#paginado{
     text-align:center;
 }

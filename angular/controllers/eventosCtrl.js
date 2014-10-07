@@ -2,7 +2,7 @@ angular.module('eventosApp', ['mainServiceApp'])
 
 .controller('eventosCtrl', ['$scope', '$http', 'mainService', '$location',
 function($scope, $http, mainService, $location){
-	mainService.evento = undefined;
+	mainService.evento = undefined;	
 	$scope.newEvento = {};
 	$scope.eventos = {};
 	$scope.selected = false;

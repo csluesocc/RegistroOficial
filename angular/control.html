@@ -41,17 +41,17 @@
     <div class="container">
 
       <!-- Pestañas -->
-      <ul class="nav nav-tabs nav-justified" role="tablist">
-        <li class="active"><a href="#eventos" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span> Eventos</a></li>
-        <li><a href="#participantes" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> participantes</a></li>
-        <li><a href="#asistencia" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tasks"></span> Asistencia</a></li>
-        <li><a href="#congreso" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-star-empty"></span> Patrocinadores</a></li>
+      <ul class="nav nav-tabs nav-justified" ng-controller="tabsCtrl">
+        <li ng-class="{active:tabEvento}"><a href="#eventos" ng-click="tab('e')"><span class="glyphicon glyphicon-list-alt"></span> Eventos</a></li>
+        <li ng-class="{active:tabParticipante}"><a href="#participantes" ng-click="tab('p')"><span class="glyphicon glyphicon-user"></span> participantes</a></li>
+        <!--<li ng-class="{active:tabAsistencia}"><a href="#asistencia" ng-click="tabAsistencia=true"><span class="glyphicon glyphicon-tasks"></span> Asistencia</a></li>-->
+        <li ng-class="{active:tabCongreso}"><a href="#congreso" ng-click="tab('c')"><span class="glyphicon glyphicon-star-empty"></span> Patrocinadores</a></li>
       </ul>
 
 
 
       <!-- Contenido Pestañas -->
-      <div class="tab-content" ng-view>
+      <div ng-view>
           <!-- el contenido de las vistas se cargara acá -->
       </div>
 
