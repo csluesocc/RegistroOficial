@@ -1,6 +1,7 @@
 Sistema de Registro CEI&A
 ============
-
+[![Build Status](https://travis-ci.org/csluesocc/RegistroOficial.svg?branch=feature-03)](https://travis-ci.org/csluesocc/RegistroOficial)
+[![Dependency Status](https://david-dm.org/csluesocc/RegistroOficial.svg)](https://david-dm.org/csluesocc/RegistroOficial)
 ## Librerias y frameworks: ##
 * NodeJs
 * AngularJs
