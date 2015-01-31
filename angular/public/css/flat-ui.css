@@ -546,6 +546,7 @@ a.thumbnail.active {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+ul.pager li,
 .btn.disabled,
 .btn[disabled],
 fieldset[disabled] .btn {

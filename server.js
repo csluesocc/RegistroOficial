@@ -15,9 +15,11 @@ app.configure(function() {
 	app.use(express.logger('dev'));			// activamos el log en modo 'dev'
 	app.use(express.bodyParser());			// Cambia HTML con metodo post
 	app.use(express.methodOverride());		//Simula delete y put
-	app.use(express.cookieParser({secreto:'sesiones'}));//necesario para utilizar sesiones
+	//app.use(express.cookieParser({secreto:'sesiones'}));//necesario para utilizar sesiones
+	app.use(express.cookieParser("12345679")); //revisar esto porque la linea anterior me daba error
     app.use(express.session({cookie: {maxAge: 900000}}));
-    app.use(app.router);
+	app.use(express.session());
+    //app.use(app.router);
 });
 
 

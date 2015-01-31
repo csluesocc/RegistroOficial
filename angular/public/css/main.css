@@ -38,10 +38,23 @@
   padding-top: 5px;
 }
 
+/** custom **/
+.nav-tabs li.active{
+    background-color:#fff !important;
+}
+div#paginado{
+    text-align:center;
+}
 
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
   .ceia-logo {
     background-image: url(public/img/logo.png);
   }
+}
+
+/** animate **/
+div[ng-view].ng-enter {
+    -webkit-animation: fadeInRight 0.5s;
+    animation: fadeInRight 0.5s;
 }

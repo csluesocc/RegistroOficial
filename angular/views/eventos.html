@@ -1,0 +1,157 @@
+<div id="eventos" ng-controller="eventosCtrl">
+<!-- MENU -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-eventos">
+                    <span class="sr-only">Eventos</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Menu colapsado para moviles -->
+            <div class="collapse navbar-collapse" id="menu-eventos" ng-controller="eventosCtrl">
+                <ul class="nav navbar-nav">
+                    <li><a href data-toggle="modal" data-target="#modal-evento" ng-click="deselectEvento()"><span class="fui-plus"></span> Nuevo</a></li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opciones <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="contenido.html">Publicar</a></li>
+                          <li><a href="#">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+<!-- Fin MENU -->
+
+    <!-- Listado -->
+    <div class="panel panel-default table-responsive">
+        <table class="table table-hover">
+            <thead>
+              <tr class="info font-14">
+                <th>Tipo</th>
+                <th>Titulo</th>
+                <th>Ponente</th>
+                <th>Lugar</th>
+                <th>Publico</th>
+                <th>Fecha </th>
+                <th>Hora</th>
+                <th>Estado</th>
+                <th>N° de Asistentes</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody class="font-12">
+              <tr ng-repeat="evento in eventos">
+                <td>{{ evento.tipo }}</td>
+                <td>{{ evento.titulo }}</td>
+                <td>{{ evento.ponente }}</td>
+                <td>{{ evento.lugar }}</td>
+                 <td>{{ evento.ingenieria }}</td>
+                <td>{{ evento.fecha }}</td>
+                <td>{{ evento.hora }}</td>
+                 <td>{{ evento.asistencia }}</td>
+                <td>
+                <td>
+                  <div class="btn-group">
+                      <button type="submit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-evento" ng-click="selectEvento(evento, 'editar')"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                  </div>
+                </td>
+                <td>
+                    <a href="#participantes" class="btn btn-primary btn-sm" role="tab" data-toggle="tab" ng-click="selectEvento(evento, 'asistencia')">asistencia</a>
+                    <!--<button class="btn btn-primary btn-sm" ng-click="irAsistencia(evento.id_evento)"><span class="glyphicon glyphicon-list-alt"></span> Aistencia</button>-->
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+      <!-- Fin Listado -->
+
+
+      <div class="modal fade" id="modal-evento">
+        <div class="modal-dialog" >
+          <div class="modal-content" >
+            <div class="modal-header" >
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+              <h4 class="modal-title">Datos</h4>
+            </div>
+            <div class="modal-body">
+              <form name="eventoForm">
+
+                <div class="form-group">
+                  <label>Nombre:</label>
+                  <input type="text" class="form-control" value="" placeholder="Nombre del evento" ng-model="newEvento.titulo" required />
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label>Ponente:</label>
+                    <input type="text" class="form-control" value="" placeholder="Nombre del ponente"  ng-model="newEvento.ponente" required />
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label>Publico:</label>
+                    <select class="form-control" ng-model="newEvento.ingenieria" required >
+                      <option>GENERAL</option>
+                      <option>ARQUITECTURA</option>
+                      <option>CIVIL</option>
+                      <option>ELECTRICA</option>
+                      <option>INDUSTRIAL</option>
+                      <option>MECANICA</option>
+                      <option>SISTEMAS</option>
+                      <option>QUIMICA</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-lg-6">
+                    <label>Tipo de evento:</label>
+                    <select class="form-control" ng-model="newEvento.tipo" required >
+                      <option>PONENCIA</option>
+                      <option>TALLER</option>
+                      <option>ESPECIAL</option>
+                      <option>VISITA TECNICA</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label>Fecha:</label>
+                    <input type="date" class="form-control" value="" ng-model="newEvento.fecha" required />
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <label>Hora:</label>
+                    <input type="time" class="form-control" value="" ng-model="newEvento.hora" required />
+                  </div>
+      <div class="form-group col-lg-6">
+                    <label>N° de Asistentes:</label>
+                    <input type="num" class="form-control" value="" placeholder="Numero de asistencia"  ng-model="newEvento.asistencia" required />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success" ng-click="registrarEvento()" ng-disabled="eventoForm.$invalid || selected"><span class="fui-check-inverted"></span> Registrar</button>
+              <button type="submit" class="btn btn-warning" ng-click="modificarEvento(newEvento)" ng-disabled="!newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria || !newEvento.asistencia || !selected"><span class="fui-new"></span> Modificar</button>
+              <button type="submit" class="btn btn-danger" ng-click="borrarEvento(newEvento)" ng-disabled="!newEvento.titulo || !newEvento.ponente || !newEvento.lugar || !newEvento.tipo || !newEvento.fecha || !newEvento.hora || !newEvento.ingenieria ||  !newEvento.asistencia || !selected"><span class="fui-cross"></span> Borrar</button>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.modal Eventos-->
+</div>
+<!-- Fin Eventos -->

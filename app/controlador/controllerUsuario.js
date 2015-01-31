@@ -16,7 +16,7 @@ var User = db.model('User', usuario_schema)
 
 //Sesiones
 var express = require('express');
-var app = express();
+//var app = express();
 //app.use(express.bodyParser());
 //app.use(express.methodOverride());
 //app.use(express.cookieParser({secreto:'secret'}));//necesario para utilizar sesiones
@@ -60,41 +60,24 @@ function encriptar(user, pass) {
 
 
 app.post('/login', function(req, res) {
-//req.session.nuevaSesion = req.body.username // creo una variable de sesion 
    var username = req.body.username
-   var password = req.body.password 
+   var password = req.body.password
+
    var passEncriptada = encriptar(username,password)
 
    User.findOne({username:username},function (err, user){
-      if(user) {
+      if(user){
     //comprabamos si la contraseña encriptada es igual a la contraseña encriptada anteriormente
-        
-        if(user.password === passEncriptada)
- // verificaa que el pass exita 
-
-       {
-        req.session.nuevaSesion = req.body.username // creo una variable de sesion 
-        //si no existe la sesion del usuario redirigimos al index
-        if(!req.session.nuevasesion)
-        { 
-            res.redirect("index.html");
-        }
-        //en otro caso mostramos la vista
-        else 
-        {
-            res.redirect('control.html');
-        }
-
-      
-     } else  
-        res.send('contraseña incorrecta')
-      
-       
-      } else 
-res.send('Ese usuario no existe')
-
-})     
-});  
+         if(user.password === passEncriptada)
+            res.redirect('control.html')
+         else
+            res.send('contraseña incorrecta')
+      }
+      else
+         res.send('no existe')
+   })
+})
+  
 
 //ruta que elimina las sesiones y redirige
     app.post("/removeSesion", function(req, res){
@@ -102,5 +85,5 @@ res.send('Ese usuario no existe')
         res.redirect("index.html");
         req.session.destroy();
         
-    })
+    });
  
