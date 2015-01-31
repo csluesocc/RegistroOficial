@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/csluesocc/RegistroOficial.png?label=ready&title=Ready)](https://waffle.io/csluesocc/RegistroOficial)
 Sistema de Registro CEI&A
 ============
 
